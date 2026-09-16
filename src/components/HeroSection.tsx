@@ -80,7 +80,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/25 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>3D WebGL Fluid Fabric • Di chuột để tương tác sóng</span>
+            <span>Hạt Lượng Tử WebGL • Di chuột để tương tác</span>
           </div>
         </div>
 

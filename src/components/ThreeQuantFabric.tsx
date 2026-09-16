@@ -1,24 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { Sparkles, Waves, Eye, Compass } from 'lucide-react';
 
 interface ThreeQuantFabricProps {
   className?: string;
 }
 
-type VisualTheme = 'liquid-silk' | 'quantum-stardust' | 'cyber-matrix';
-
 export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = '' }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isSupported, setIsSupported] = useState<boolean>(true);
-  const [activeTheme, setActiveTheme] = useState<VisualTheme>('liquid-silk');
-  const [particleCountLabel, setParticleCountLabel] = useState<number>(350);
-
-  // Keep a ref to the active theme so the animation loop can read it seamlessly
-  const themeRef = useRef<VisualTheme>('liquid-silk');
-  useEffect(() => {
-    themeRef.current = activeTheme;
-  }, [activeTheme]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -49,14 +38,14 @@ export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = 
     camera.lookAt(0, 0, -1);
 
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: false,
       alpha: true,
       powerPreference: 'high-performance',
       stencil: false,
       depth: true,
     });
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     renderer.setPixelRatio(dpr);
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
@@ -96,8 +85,8 @@ export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = 
     scene.add(rimLightRight);
 
     // 4. Geometry: High-Density Wave Fabric Plane
-    const gridX = 84;
-    const gridY = 56;
+    const gridX = 64;
+    const gridY = 44;
     const planeWidth = 56;
     const planeHeight = 40;
 
@@ -164,7 +153,7 @@ export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = 
     };
 
     const particleTexture = createCircleGlowTexture();
-    const dustCount = 380;
+    const dustCount = 240;
     const dustGeometry = new THREE.BufferGeometry();
     const dustPositions = new Float32Array(dustCount * 3);
     const dustScales = new Float32Array(dustCount);
@@ -289,8 +278,6 @@ export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = 
       if (!isVisible) return;
 
       const time = clock.getElapsedTime();
-      const currentTheme = themeRef.current;
-
       // Smooth inertia lerp for mouse
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
@@ -312,28 +299,6 @@ export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = 
       coreGroup.rotation.y = time * 0.45 + mouse.x * 0.6;
       coreGroup.position.y = 6 + Math.sin(time * 1.2) * 1.2;
       icosaMesh.rotation.z = -time * 0.2;
-
-      // Theme-based shader configurations
-      if (currentTheme === 'liquid-silk') {
-        silkMaterial.roughness = 0.2;
-        silkMaterial.metalness = 0.88;
-        silkMaterial.emissiveIntensity = 0.4;
-        wireframeMaterial.opacity = 0.07;
-        dustMaterial.opacity = 0.55;
-      } else if (currentTheme === 'quantum-stardust') {
-        silkMaterial.roughness = 0.45;
-        silkMaterial.metalness = 0.5;
-        silkMaterial.emissiveIntensity = 0.2;
-        wireframeMaterial.opacity = 0.04;
-        dustMaterial.opacity = 0.95;
-      } else {
-        // cyber-matrix
-        silkMaterial.roughness = 0.15;
-        silkMaterial.metalness = 0.95;
-        silkMaterial.emissiveIntensity = 0.6;
-        wireframeMaterial.opacity = 0.18;
-        dustMaterial.opacity = 0.4;
-      }
 
       // Update Wave Vertices (Multi-octave organic undulation)
       const positions = geometry.attributes.position;
@@ -360,8 +325,10 @@ export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = 
       }
 
       positions.needsUpdate = true;
-      // Recompute normals every frame so specular reflections glide like real liquid mercury
-      geometry.computeVertexNormals();
+      // Normals update periodically; recalculating them every frame makes scrolling expensive.
+      if (Math.floor(time * 60) % 3 === 0) {
+        geometry.computeVertexNormals();
+      }
 
       // Animate floating dust particles
       const dustPos = dustGeometry.attributes.position;
@@ -424,55 +391,6 @@ export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = 
       <div className="absolute inset-0 bg-gradient-to-b from-[#080c14]/30 via-transparent to-[#080c14] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#080c14_85%)] pointer-events-none opacity-80" />
 
-      {/* Floating 3D Experience Control Pill (Interactive Aesthetic Controls) */}
-      <div className="absolute bottom-4 right-4 z-20 pointer-events-auto hidden sm:flex items-center gap-1 p-1 rounded-xl bg-slate-900/80 backdrop-blur-md border border-slate-700/60 shadow-xl shadow-black/40 text-[11px]">
-        <span className="px-2 py-1 text-slate-400 font-mono font-medium flex items-center gap-1.5 border-r border-slate-700/60 mr-0.5">
-          <Compass className="w-3 h-3 text-cyan-400 animate-spin-slow" />
-          <span>Three.js 3D</span>
-        </span>
-
-        <button
-          type="button"
-          onClick={() => setActiveTheme('liquid-silk')}
-          className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
-            activeTheme === 'liquid-silk'
-              ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-          title="Mặt sóng lỏng obsidian bóng loáng phản xạ ánh sáng cao cấp"
-        >
-          <Waves className="w-3 h-3" />
-          <span>Lụa Lỏng</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActiveTheme('quantum-stardust')}
-          className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
-            activeTheme === 'quantum-stardust'
-              ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/40 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-          title="Bão hạt lượng tử bioluminescent phát sáng đa tầng"
-        >
-          <Sparkles className="w-3 h-3" />
-          <span>Hạt Lượng Tử</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActiveTheme('cyber-matrix')}
-          className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
-            activeTheme === 'cyber-matrix'
-              ? 'bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/40 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-          title="Lưới không gian số Cyber Matrix phản xạ ánh kim"
-        >
-          <Eye className="w-3 h-3" />
-          <span>Cyber Matrix</span>
-        </button>
-      </div>
     </div>
   );
 };

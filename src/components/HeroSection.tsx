@@ -19,7 +19,6 @@ import {
 } from 'lucide-react';
 import { SAMPLE_ASSETS } from '../data/content';
 import { AssetAnalysisData } from '../types';
-import { ThreeQuantFabric } from './ThreeQuantFabric';
 
 interface HeroSectionProps {
   onOpenRegister: () => void;
@@ -58,9 +57,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden" id="hero-section">
-      {/* Background 3D WebGL Fluid Fabric (Three.js Lusion style) */}
-      <ThreeQuantFabric />
-
       {/* Background Decorative Gradients & Grid Lines */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-b from-emerald-500/15 via-cyan-500/10 to-transparent blur-3xl opacity-60" />

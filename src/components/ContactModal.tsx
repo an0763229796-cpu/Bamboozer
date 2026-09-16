@@ -31,6 +31,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   const [topic, setTopic] = useState('Tư vấn bot & thuật toán AI');
   const [message, setMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const [copiedContent, setCopiedContent] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -43,29 +44,52 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     setTimeout(() => setCopiedContent(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSending) return;
+
     if (!name.trim() || !senderEmail.trim() || !message.trim()) {
       setErrorMessage('Vui lòng điền đầy đủ Họ tên, Email và Nội dung tin nhắn.');
       return;
     }
 
     setErrorMessage('');
-    
-    // Construct mailto link
-    const subject = encodeURIComponent(`[Bamboozer AI] ${topic} - Từ ${name}`);
-    const bodyContent = `Xin chào đội ngũ Bamboozer,%0D%0A%0D%0AThông tin liên hệ:%0D%0A- Họ và tên: ${encodeURIComponent(name)}%0D%0A- Email người gửi: ${encodeURIComponent(senderEmail)}%0D%0A- SĐT/Telegram: ${encodeURIComponent(phone || 'Chưa cung cấp')}%0D%0A- Chủ đề: ${encodeURIComponent(topic)}%0D%0A%0D%0ANội dung tin nhắn:%0D%0A${encodeURIComponent(message)}%0D%0A%0D%0A---%0D%0AGửi từ biểu mẫu liên hệ Bamboozer AI Quant Platform`;
-    
-    const mailtoUrl = `mailto:${targetEmail}?subject=${subject}&body=${bodyContent}`;
-    
-    // Open email client
-    window.location.href = mailtoUrl;
 
-    setIsSubmitted(true);
+    setIsSending(true);
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: `[Bamboozer AI] ${topic} - Từ ${name}`,
+          _template: 'table',
+          _captcha: 'false',
+          name,
+          email: senderEmail,
+          phone: phone || 'Chưa cung cấp',
+          topic,
+          message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Email service returned an error');
+      }
+
+      setIsSubmitted(true);
+    } catch {
+      setErrorMessage('Không thể gửi email lúc này. Vui lòng thử lại hoặc sao chép nội dung để gửi thủ công.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const handleReset = () => {
     setIsSubmitted(false);
+    setErrorMessage('');
     setMessage('');
   };
 
@@ -111,7 +135,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 Ứng dụng email đã được kích hoạt!
               </h4>
               <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
-                Nội dung thư của bạn đã được đóng gói sẵn để gửi đến <span className="text-cyan-300 font-mono font-semibold">{targetEmail}</span>. Nếu ứng dụng email chưa tự mở, bạn có thể bấm nút bên dưới để sao chép nội dung hoặc mở lại.
+                Email của bạn đã được gửi thành công đến đội ngũ Bamboozer. Bạn có thể bấm nút bên dưới để sao chép nội dung hoặc gửi tin nhắn khác.
               </p>
             </div>
 
@@ -137,15 +161,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
               <button
                 type="button"
-                onClick={() => {
-                  const subject = encodeURIComponent(`[Bamboozer AI] ${topic} - Từ ${name}`);
-                  const bodyContent = `Xin chào đội ngũ Bamboozer,%0D%0A%0D%0A- Họ và tên: ${encodeURIComponent(name)}%0D%0A- Email: ${encodeURIComponent(senderEmail)}%0D%0A- SĐT: ${encodeURIComponent(phone || 'Chưa cung cấp')}%0D%0A- Chủ đề: ${encodeURIComponent(topic)}%0D%0A%0D%0ANội dung:%0D%0A${encodeURIComponent(message)}`;
-                  window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${bodyContent}`;
-                }}
+                onClick={handleReset}
                 className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <Send className="w-4 h-4" />
-                <span>Mở lại ứng dụng Email</span>
+                <span>Gửi tin nhắn khác</span>
               </button>
             </div>
 
@@ -270,10 +290,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <button
                 type="submit"
                 id="btn-submit-contact"
+                disabled={isSending}
                 className="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 hover:from-emerald-300 hover:to-cyan-200 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-[0.99]"
               >
-                <Send className="w-4 h-4 text-slate-950" />
-                <span>Gửi Email Trực Tiếp Cho Tôi</span>
+                <Send className={`w-4 h-4 text-slate-950 ${isSending ? 'animate-pulse' : ''}`} />
+                <span>{isSending ? 'Đang gửi email...' : 'Gửi Email Trực Tiếp Cho Tôi'}</span>
               </button>
             </div>
           </form>

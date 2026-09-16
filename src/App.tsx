@@ -16,6 +16,7 @@ import { QuickGuideDrawer } from './components/QuickGuideDrawer';
 import { ReferralModal } from './components/ReferralModal';
 import { DemoVideoModal } from './components/DemoVideoModal';
 import { ContactModal } from './components/ContactModal';
+import { ThreeQuantFabric } from './components/ThreeQuantFabric';
 import { Sparkles, Coins, Check, Gift, Mail, X } from 'lucide-react';
 
 export const BAMBOOZER_REGISTER_URL = 'https://www.bamboozer.com/register?ref=81';
@@ -55,6 +56,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#080c14] text-slate-100 selection:bg-emerald-500/30 selection:text-emerald-200">
+      <ThreeQuantFabric className="fixed inset-0" />
+      <div className="relative z-10">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 bg-[#0e1726] border border-emerald-500/40 text-white px-4 py-3 rounded-xl shadow-2xl shadow-emerald-500/20 flex items-center gap-3 animate-fade-in">
@@ -187,6 +190,7 @@ export default function App() {
         onClose={() => setIsContactOpen(false)}
         targetEmail="an0763229796@gmail.com"
       />
+      </div>
     </div>
   );
 }

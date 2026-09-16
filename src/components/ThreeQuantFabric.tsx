@@ -384,7 +384,7 @@ export const ThreeQuantFabric: React.FC<ThreeQuantFabricProps> = ({ className = 
   return (
     <div 
       ref={containerRef} 
-      className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 ${className}`}
+      className={`fixed inset-0 overflow-hidden pointer-events-none select-none z-0 ${className}`}
       aria-hidden="true"
     >
       {/* Cinematic Vignette Overlay (Blends edges softly into obsidian black) */}

@@ -270,17 +270,17 @@ export const SAMPLE_ASSETS: Record<string, AssetAnalysisData> = {
 };
 
 export const CRYPTO_EXCHANGES = [
-  { name: 'Binance', logo: '🟡', type: 'Spot & Futures', status: 'Official Partner API' },
-  { name: 'OKX', logo: '⚪', type: 'Multi-Assets', status: 'Fast Webhook' },
-  { name: 'Bybit', logo: '🟠', type: 'Derivatives & Spot', status: 'Unified Margin' },
-  { name: 'Bitget', logo: '🔵', type: 'Copy Trading & Spot', status: 'Ultra-low Latency' },
-  { name: 'Coinbase', logo: '🔷', type: 'Advanced Trade', status: 'US Compliant' },
-  { name: 'Kraken', logo: '🟣', type: 'Spot & Margin', status: 'High Security' },
-  { name: 'KuCoin', logo: '🟢', type: 'Spot & Futures', status: 'API Key Verified' },
-  { name: 'Gate.io', logo: '🔴', type: 'Multi-Tokens', status: 'Active' },
-  { name: 'Bitfinex', logo: '🟢', type: 'Institutional', status: 'Active' },
-  { name: 'Deepcoin', logo: '🔵', type: 'Derivatives', status: 'Fast Execution' },
-  { name: 'HTX', logo: '🟦', type: 'Global Spot', status: 'Active' }
+  { name: 'Binance', logo: '🟡', logoUrl: 'https://cdn.simpleicons.org/binance/F0B90B', type: 'Spot & Futures', status: 'Official Partner API' },
+  { name: 'OKX', logo: '⚪', logoUrl: 'https://cdn.simpleicons.org/okx/FFFFFF', type: 'Multi-Assets', status: 'Fast Webhook' },
+  { name: 'Bybit', logo: '🟠', logoUrl: 'https://cdn.simpleicons.org/bybit/F7A600', type: 'Derivatives & Spot', status: 'Unified Margin' },
+  { name: 'Bitget', logo: '🔵', logoUrl: 'https://cdn.simpleicons.org/bitget/00F0FF', type: 'Copy Trading & Spot', status: 'Ultra-low Latency' },
+  { name: 'Coinbase', logo: '🔷', logoUrl: 'https://cdn.simpleicons.org/coinbase/0052FF', type: 'Advanced Trade', status: 'US Compliant' },
+  { name: 'Kraken', logo: '🟣', logoUrl: 'https://cdn.simpleicons.org/kraken/5741D9', type: 'Spot & Margin', status: 'High Security' },
+  { name: 'KuCoin', logo: '🟢', logoUrl: 'https://cdn.simpleicons.org/kucoin/23AF91', type: 'Spot & Futures', status: 'API Key Verified' },
+  { name: 'Gate.io', logo: '🔴', logoUrl: 'https://cdn.simpleicons.org/gate/FFFFFF', type: 'Multi-Tokens', status: 'Active' },
+  { name: 'Bitfinex', logo: '🟢', logoUrl: 'https://cdn.simpleicons.org/bitfinex/16B157', type: 'Institutional', status: 'Active' },
+  { name: 'Deepcoin', logo: '🔵', logoUrl: 'https://cdn.simpleicons.org/deepcoin/FFFFFF', type: 'Derivatives', status: 'Fast Execution' },
+  { name: 'HTX', logo: '🟦', logoUrl: 'https://cdn.simpleicons.org/htx/2B71FF', type: 'Global Spot', status: 'Active' }
 ];
 
 export const BROKERS_AND_PLATFORMS = [

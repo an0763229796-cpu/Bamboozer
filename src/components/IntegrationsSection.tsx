@@ -44,7 +44,21 @@ export const IntegrationsSection: React.FC<{ onOpenQuickGuide: (id: string) => v
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-2xl">{exch.logo}</span>
+                    <div className="w-9 h-9 rounded-lg bg-slate-950/80 border border-slate-700/80 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={exch.logoUrl}
+                        alt={`${exch.name} logo`}
+                        className="w-6 h-6 object-contain"
+                        loading="lazy"
+                        onError={(event) => {
+                          event.currentTarget.style.display = 'none';
+                          event.currentTarget.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      <span className="hidden text-[10px] font-extrabold text-slate-200" aria-hidden="true">
+                        {exch.logo}
+                      </span>
+                    </div>
                     <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                       API v3
                     </span>

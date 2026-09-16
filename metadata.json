@@ -1,0 +1,6 @@
+{
+  "name": "Bamboozer - AI Quant Trading Platform",
+  "description": "Nền tảng giao dịch định lượng AI đa tài sản Non-Custodial. Tự động hóa giao dịch Crypto, Cổ phiếu Mỹ và Forex an toàn.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

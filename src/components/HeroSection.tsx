@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { SAMPLE_ASSETS } from '../data/content';
 import { AssetAnalysisData } from '../types';
+import { ThreeQuantFabric } from './ThreeQuantFabric';
 
 interface HeroSectionProps {
   onOpenRegister: () => void;
@@ -57,29 +58,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden" id="hero-section">
+      {/* Background 3D WebGL Fluid Fabric (Three.js Lusion style) */}
+      <ThreeQuantFabric />
+
       {/* Background Decorative Gradients & Grid Lines */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-b from-emerald-500/15 via-cyan-500/10 to-transparent blur-3xl opacity-70" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-b from-emerald-500/15 via-cyan-500/10 to-transparent blur-3xl opacity-60" />
         <div className="absolute top-1/3 -left-32 w-96 h-96 bg-teal-600/10 blur-[100px] rounded-full" />
         <div className="absolute bottom-10 -right-32 w-96 h-96 bg-cyan-600/10 blur-[100px] rounded-full" />
-        {/* Subtle Quant Grid Lines */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]" 
-          style={{ 
-            backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
-            backgroundSize: '48px 48px'
-          }} 
-        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top Tagline / Regulation Badge */}
+        {/* Top Tagline / Regulation Badge & 3D Interactive Tag */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-sm backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
             <span>Nền tảng AI Quant Trading Thế Hệ Mới</span>
             <span className="text-emerald-500/50">•</span>
             <span className="text-slate-300">Singapore UEN: 202202779W</span>
+          </div>
+
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/25 backdrop-blur-md">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span>3D WebGL Fluid Fabric • Di chuột để tương tác sóng</span>
           </div>
         </div>
 

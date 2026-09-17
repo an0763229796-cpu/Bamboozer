@@ -95,10 +95,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               id="language-switcher"
               value={language}
               onChange={(event) => setLanguage(event.target.value as Language)}
-              className="h-8 rounded-lg border border-slate-700 bg-slate-900/90 px-1.5 text-[11px] font-bold text-slate-300 outline-none focus:border-emerald-400 cursor-pointer"
+              className="order-last h-8 rounded-lg border border-emerald-500/40 bg-slate-900 px-2 text-[11px] font-bold text-emerald-300 outline-none shadow-sm shadow-emerald-500/10 focus:border-emerald-400 cursor-pointer"
               aria-label="Select language"
             >
               <option value="vi">VI</option>
+              <option value="en">EN</option>
               <option value="zh">中文</option>
             </select>
             {/* Free Credits Wallet Badge */}

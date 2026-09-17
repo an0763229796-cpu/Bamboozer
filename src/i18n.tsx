@@ -238,6 +238,27 @@ const translations = {
     terms: 'Terms of Service',
     privacy: 'Privacy Policy',
     apiSecurity: 'API Security',
+    companyDesc: 'AI-powered multi-asset quant trading automation platform with a strict non-custodial model. Your funds remain on your personal exchange account.',
+    countryLabel: 'Country:',
+    uenLabel: 'Business registration (UEN):',
+    emailLabel: 'Email:',
+    footerProductAsset: 'AI Asset Analysis',
+    footerProductIndicator: 'Indicator IDE (Pine Script)',
+    footerProductGrid: 'Grid Bots & Smart DCA',
+    footerProductMarketplace: 'Strategy Marketplace',
+    footerProductTerminal: 'Trading Terminal',
+    footerProductExchange: 'Exchange API Connect',
+    footerResourceTutorials: 'Video Tutorial Center',
+    footerResourceOnboarding: '3-step onboarding process',
+    footerResourcePricing: 'Pricing & Credits mechanism',
+    footerResourceReferral: 'Referral Program',
+    footerResourceFaq: 'Frequently Asked Questions (FAQ)',
+    footerResourceSupport: 'Contact support (Email)',
+    footerSafetyNonCustodial: 'Non-Custodial 100%',
+    footerSafetyNote: 'No asset custody. No withdrawal permissions.',
+    footerRiskP1: 'Financial trading, including crypto, stocks, commodities, and FX, carries high risk and may not be suitable for all investors. You may lose part or all of your capital.',
+    footerRiskP2: 'Market analysis, confidence scores, and AI signals from Bamboozer are built on mathematical and quantitative models for technical reference only and do not constitute financial advice or guaranteed future returns. Users are solely responsible for their trading decisions.',
+    footerCopyright: '© 2026 VIDI VICI TECHNOLOGY PTE. LTD. All rights reserved.',
     audienceBadge: 'Designed for Every Investor Level',
     audienceTitle: 'Which Type of Trader Are You?',
     audienceDescription: 'Whether you are a full-time trader seeking nanosecond speed or a beginner seeking safer accumulation, Bamboozer has the right toolkit for you.',
@@ -730,7 +751,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     const saved = localStorage.getItem('bamboozer-language');
     if (saved === 'vi' || saved === 'en' || saved === 'zh') return saved;
-    return 'zh';
+    return 'en';
   });
 
   const setLanguage = (nextLanguage: Language) => {

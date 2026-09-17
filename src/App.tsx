@@ -19,6 +19,8 @@ import { ContactModal } from './components/ContactModal';
 import { ThreeQuantFabric } from './components/ThreeQuantFabric';
 import { Sparkles, Coins, Check, Gift, Mail, X } from 'lucide-react';
 import { useLanguage } from './i18n';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export const BAMBOOZER_REGISTER_URL = 'https://www.bamboozer.com/register?ref=81';
 
@@ -192,6 +194,8 @@ export default function App() {
         onClose={() => setIsContactOpen(false)}
         targetEmail="an0763229796@gmail.com"
       />
+      <Analytics />
+      <SpeedInsights />
       </div>
     </div>
   );

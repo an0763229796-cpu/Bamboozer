@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Play, Pause, Volume2, VolumeX, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 interface DemoVideoModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ export const DemoVideoModal: React.FC<DemoVideoModalProps> = ({
   onClose,
   onOpenRegister
 }) => {
+  const { t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [activeSegment, setActiveSegment] = useState<number>(0);
 
@@ -94,7 +96,7 @@ export const DemoVideoModal: React.FC<DemoVideoModalProps> = ({
                 </button>
                 <span className="font-mono text-[11px]">01:42 / 03:00</span>
               </div>
-              <span className="text-[11px] text-emerald-400 font-mono">Thuyết minh Tiếng Việt</span>
+              <span className="text-[11px] text-emerald-400 font-mono">{t('demoNarration')}</span>
             </div>
           </div>
         </div>
@@ -103,7 +105,7 @@ export const DemoVideoModal: React.FC<DemoVideoModalProps> = ({
         <div className="p-5 bg-[#090d15] border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs text-slate-300 flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>Xem xong? Bắt đầu thực hành với 100 Credits miễn phí ngay.</span>
+            <span>{t('demoDone')}</span>
           </div>
 
           <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -121,7 +123,7 @@ export const DemoVideoModal: React.FC<DemoVideoModalProps> = ({
               onClick={onClose}
               className="px-4 py-2.5 rounded-xl text-xs text-slate-400 hover:text-white bg-slate-900 border border-slate-800 cursor-pointer"
             >
-              Đóng
+              {t('closeDemo')}
             </button>
           </div>
         </div>

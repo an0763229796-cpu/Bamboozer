@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { SAMPLE_ASSETS } from '../data/content';
 import { AssetAnalysisData } from '../types';
+import { useLanguage } from '../i18n';
 
 interface HeroSectionProps {
   onOpenRegister: () => void;
@@ -31,6 +32,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenVideoDemo,
   onOpenQuickGuide
 }) => {
+  const { t, tContent } = useLanguage();
   const assetKeys = Object.keys(SAMPLE_ASSETS);
   const [selectedSymbol, setSelectedSymbol] = useState<string>('BTC/USDT');
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
@@ -69,28 +71,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-sm backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>Nền tảng AI Quant Trading Thế Hệ Mới</span>
+            <span>{t('heroBadge')}</span>
             <span className="text-emerald-500/50">•</span>
             <span className="text-slate-300">Singapore UEN: 202202779W</span>
           </div>
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/25 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>Hạt Lượng Tử WebGL • Di chuột để tương tác</span>
+            <span>{t('heroQuantum')}</span>
           </div>
         </div>
 
         {/* Hero Headline & Sub-headline */}
         <div className="text-center max-w-4xl mx-auto mb-10">
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-5">
-            Tự động hóa bằng AI cho{' '}
+            {t('heroTitle')}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-              Tiền mã hóa, Cổ phiếu
+              {t('heroMarkets')}
             </span>{' '}
-            và Ngoại hối
+            {t('heroAndForex')}
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Kết nối API sàn/nhà môi giới, phân tích thị trường bằng AI và quản lý mọi chiến lược giao dịch trong một không gian làm việc duy nhất.
+            {t('heroDescription')}
           </p>
         </div>
 
@@ -102,10 +104,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
             <div>
               <div className="text-xs font-bold text-white leading-snug">
-                Non-custodial platform
+                {t('nonCustodial')}
               </div>
               <div className="text-[11px] text-emerald-400/90 font-medium mt-0.5">
-                Nền tảng không lưu ký
+                {t('nonCustodial')}
               </div>
             </div>
           </div>
@@ -116,10 +118,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
             <div>
               <div className="text-xs font-bold text-white leading-snug">
-                Your funds stay in account
+                {t('fundsStay')}
               </div>
               <div className="text-[11px] text-teal-400/90 font-medium mt-0.5">
-                Tiền nằm trên sàn cá nhân
+                {t('fundsStayVi')}
               </div>
             </div>
           </div>
@@ -130,10 +132,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
             <div>
               <div className="text-xs font-bold text-white leading-snug">
-                No withdrawal permission
+                {t('noWithdrawal')}
               </div>
               <div className="text-[11px] text-cyan-400/90 font-medium mt-0.5">
-                Không quyền rút tiền
+                {t('noWithdrawalVi')}
               </div>
             </div>
           </div>
@@ -144,10 +146,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
             <div>
               <div className="text-xs font-bold text-white leading-snug">
-                No coding required
+                {t('noCoding')}
               </div>
               <div className="text-[11px] text-amber-400/90 font-medium mt-0.5">
-                Không cần biết lập trình
+                {t('noCodingVi')}
               </div>
             </div>
           </div>
@@ -156,7 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Slogan & Action CTAs */}
         <div className="text-center mb-12">
           <p className="text-sm sm:text-base font-semibold text-slate-300 italic mb-6">
-            &ldquo;Tài khoản của bạn. Chiến lược của bạn. Quyền kiểm soát của bạn.&rdquo;
+            {t('slogan')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
@@ -164,7 +166,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               onClick={onOpenRegister}
               className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2"
             >
-              <span>Bắt đầu ngay - Nhận 100 Credits Free</span>
+              <span>{t('startFree')}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
@@ -175,15 +177,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Play className="w-3 h-3 fill-emerald-400 ml-0.5" />
               </div>
-              <span>Xem Video Demo 3 Phút</span>
+              <span>{t('watchDemo')}</span>
             </button>
           </div>
           <div className="mt-3 text-xs text-slate-400 flex items-center justify-center gap-4">
             <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Không cần thẻ tín dụng
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> {t('noCard')}
             </span>
             <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Kích hoạt trong 60 giây
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> {t('activation')}
             </span>
           </div>
         </div>
@@ -246,7 +248,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   onClick={() => onOpenQuickGuide('ai-analysis')}
                   className="text-xs text-cyan-400 hover:text-cyan-300 underline font-medium cursor-pointer"
                 >
-                  Xem hướng dẫn đọc tín hiệu
+                  {t('signalGuide')}
                 </button>
               </div>
             </div>
@@ -473,14 +475,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     <div className="text-sm font-bold text-white font-mono flex items-baseline gap-1.5">
                       <span>{currentAsset.macroFactors.fearGreedIndex}</span>
                       <span className="text-[10px] text-amber-400 font-normal">
-                        {currentAsset.macroFactors.fearGreedLabel}
+                        {currentAsset.symbol === 'BTC/USDT' ? tContent('asset.btc.greed', currentAsset.macroFactors.fearGreedLabel) : currentAsset.macroFactors.fearGreedLabel}
                       </span>
                     </div>
                   </div>
 
                   <div className="bg-slate-900/80 border border-slate-800 rounded-lg p-2.5">
                     <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
-                      <span>Chỉ số DXY</span>
+                      <span>{t('dxyIndex')}</span>
                       <Globe2 className="w-3.5 h-3.5 text-cyan-400" />
                     </div>
                     <div className="text-sm font-bold text-white font-mono flex items-baseline gap-1.5">
@@ -491,12 +493,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
                   <div className="bg-slate-900/80 border border-slate-800 rounded-lg p-2.5">
                     <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
-                      <span>Biến động VIX</span>
+                      <span>{t('vixVolatility')}</span>
                       <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
                     </div>
                     <div className="text-sm font-bold text-white font-mono flex items-baseline gap-1.5">
                       <span>{currentAsset.macroFactors.vixIndex}</span>
-                      <span className="text-[10px] text-emerald-400 font-normal">Ổn định</span>
+                      <span className="text-[10px] text-emerald-400 font-normal">{t('stable')}</span>
                     </div>
                   </div>
                 </div>
@@ -508,7 +510,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <div className="absolute inset-0 bg-[#0d131f]/90 backdrop-blur-xs flex flex-col items-center justify-center rounded-xl z-20">
                     <RefreshCw className="w-8 h-8 text-emerald-400 animate-spin mb-2" />
                     <span className="text-xs font-semibold text-emerald-300">
-                      AI đang phân tích đa khung thời gian & chỉ báo...
+                      {t('analyzing')}
                     </span>
                   </div>
                 )}
@@ -521,14 +523,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       White-Box AI Signal
                     </span>
                     <span className="text-[11px] text-slate-400 font-mono">
-                      Cập nhật: 12 giây trước
+                      {t('updatedAgo')}
                     </span>
                   </div>
 
                   {/* Recommendation & Confidence Bar */}
                   <div className="bg-[#080c14] border border-slate-800 rounded-xl p-4 mb-4">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs text-slate-400">Khuyến nghị hành động:</span>
+                      <span className="text-xs text-slate-400">{t('actionRecommendation')}</span>
                       <span className={`text-sm font-extrabold px-2.5 py-0.5 rounded font-mono ${
                         currentAsset.recommendation.includes('BUY') 
                           ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' 
@@ -543,7 +545,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     {/* Confidence Score Progress Bar */}
                     <div>
                       <div className="flex items-center justify-between text-xs mb-1 font-mono">
-                        <span className="text-slate-300">Độ tin cậy (Confidence):</span>
+                        <span className="text-slate-300">{t('confidence')}</span>
                         <span className="font-bold text-emerald-400 text-sm">
                           {currentAsset.confidenceScore}%
                         </span>
@@ -560,8 +562,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {/* Multi-Timeframe Consensus */}
                   <div className="mb-4">
                     <div className="text-xs font-semibold text-slate-300 mb-1.5 flex items-center justify-between">
-                      <span>Đồng thuận đa khung giờ (Consensus):</span>
-                      <span className="text-[10px] text-emerald-400">3/4 Khung Bullish</span>
+                      <span>{t('consensus')}</span>
+                      <span className="text-[10px] text-emerald-400">{t('consensusCount')}</span>
                     </div>
                     <div className="grid grid-cols-4 gap-1.5 text-center text-[10px] font-mono font-bold">
                       <div className="p-1.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -582,19 +584,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {/* Entry, Stop Loss, Take Profit */}
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center justify-between text-xs p-2 rounded-lg bg-slate-900/90 border border-slate-800">
-                      <span className="text-slate-400">Vùng Entry Zone:</span>
+                      <span className="text-slate-400">{t('entryZone')}</span>
                       <span className="font-mono font-bold text-cyan-300">
                         ${currentAsset.entryZone[0].toLocaleString()} - ${currentAsset.entryZone[1].toLocaleString()}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-xs p-2 rounded-lg bg-slate-900/90 border border-slate-800">
-                      <span className="text-slate-400">Stop Loss chuẩn ATR:</span>
+                      <span className="text-slate-400">{t('atrStopLoss')}</span>
                       <span className="font-mono font-bold text-rose-400">
                         ${currentAsset.stopLoss.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-xs p-2 rounded-lg bg-slate-900/90 border border-slate-800">
-                      <span className="text-slate-400">Take Profit 1 / 2:</span>
+                      <span className="text-slate-400">{t('takeProfit')}</span>
                       <span className="font-mono font-bold text-emerald-400">
                         ${currentAsset.takeProfit1.toLocaleString()} / ${currentAsset.takeProfit2.toLocaleString()}
                       </span>
@@ -604,13 +606,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {/* Technical Reasons (White-Box Proof) */}
                   <div>
                     <div className="text-xs font-semibold text-slate-300 mb-1.5">
-                      Lý do kỹ thuật chi tiết:
+                      {t('technicalReasons')}
                     </div>
                     <ul className="space-y-1 text-[11px] text-slate-400">
                       {currentAsset.technicalReasons.slice(0, 2).map((reason, idx) => (
                         <li key={idx} className="flex items-start gap-1.5">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                          <span className="leading-snug">{reason}</span>
+                          <span className="leading-snug">{currentAsset.symbol === 'BTC/USDT' ? tContent(`asset.btc.reason.${idx}`, reason) : reason}</span>
                         </li>
                       ))}
                     </ul>
@@ -624,13 +626,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     className="flex-1 py-2 px-3 rounded-lg text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <RefreshCw className={`w-3.5 h-3.5 ${isAnalyzing ? 'animate-spin' : ''}`} />
-                    <span>Quét lại tín hiệu AI</span>
+                    <span>{t('rescan')}</span>
                   </button>
                   <button
                     onClick={onOpenRegister}
                     className="py-2 px-3 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors cursor-pointer"
                   >
-                    Tự động hóa Bot
+                    {t('automateBot')}
                   </button>
                 </div>
               </div>

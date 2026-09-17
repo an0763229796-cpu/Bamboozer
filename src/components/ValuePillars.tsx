@@ -19,8 +19,10 @@ import {
   KeyRound
 } from 'lucide-react';
 import { API_PERMISSIONS_COMPARISON } from '../data/content';
+import { useLanguage } from '../i18n';
 
 export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenRegister }) => {
+  const { t, tContent } = useLanguage();
   const [activeTab, setActiveTab] = useState<'non-custodial' | 'white-box' | 'lifecycle'>('non-custodial');
 
   return (
@@ -30,13 +32,13 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mb-3">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Xóa Bỏ Rào Cản Tâm Lý &amp; Rủi Ro</span>
+            <span>{t('pillarsBadge')}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            3 Trụ Cột Khác Biệt Vượt Trội Của Bamboozer
+            {t('pillarsTitle')}
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Chúng tôi thiết kế nền tảng dựa trên triết lý an toàn tài sản tuyệt đối, minh bạch thuật toán và tinh gọn toàn bộ chu trình giao dịch của một nhà đầu tư chuyên nghiệp.
+            {t('pillarsDescription')}
           </p>
 
           {/* Tab navigation between 3 pillars */}
@@ -50,7 +52,7 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
               }`}
             >
               <Lock className="w-3.5 h-3.5" />
-              <span>1. Non-Custodial</span>
+              <span>1. {t('nonCustodial')}</span>
             </button>
             <button
               onClick={() => setActiveTab('white-box')}
@@ -61,7 +63,7 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
               }`}
             >
               <Cpu className="w-3.5 h-3.5" />
-              <span>2. White-Box AI</span>
+              <span>2. {t('pillar2Name')}</span>
             </button>
             <button
               onClick={() => setActiveTab('lifecycle')}
@@ -72,7 +74,7 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>3. All-in-One Lifecycle</span>
+              <span>3. {t('livePnl')}</span>
             </button>
           </div>
         </div>
@@ -83,14 +85,14 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-3">
-                  TRỤ CỘT 01
+                  {t('pillar01')}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">
                   Non-Custodial by Design <br />
-                  <span className="text-emerald-400">Không Giữ Tiền Của Khách Hàng</span>
+                  <span className="text-emerald-400">{t('pillar1Title')}</span>
                 </h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                  Mọi lệnh Mua/Bán đều được thực thi trực tiếp trên tài khoản sàn chính chủ của bạn (Binance, OKX, Bybit, Coinbase...). Bamboozer không sở hữu ví lưu ký, không nhận tiền gửi, và tuyệt đối không thể can thiệp vào số dư gốc.
+                  {t('pillar1Description')}
                 </p>
 
                 <div className="space-y-3.5">
@@ -99,8 +101,8 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                       <Check className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <strong className="text-white block mb-0.5">Tài sản luôn nằm trên sàn gốc:</strong>
-                      Hưởng trọn bảo hiểm quỹ SAFU của Binance và bảo mật 2FA cá nhân.
+                      <strong className="text-white block mb-0.5">{t('assetOnExchange')}</strong>
+                      {tContent('pillar.assetSafety', 'Hưởng trọn bảo hiểm quỹ SAFU của Binance và bảo mật 2FA cá nhân.')}
                     </div>
                   </div>
 
@@ -109,8 +111,8 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                       <Check className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <strong className="text-white block mb-0.5">Thu hồi quyền trong 1 giây:</strong>
-                      Người dùng có thể xóa hoặc vô hiệu hóa API Key trên app sàn bất kỳ lúc nào.
+                      <strong className="text-white block mb-0.5">{t('revokeAccess')}</strong>
+                      {tContent('pillar.revoke', 'Người dùng có thể xóa hoặc vô hiệu hóa API Key trên app sàn bất kỳ lúc nào.')}
                     </div>
                   </div>
 
@@ -119,8 +121,8 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                       <X className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <strong className="text-rose-300 block mb-0.5">Từ chối API có quyền rút tiền:</strong>
-                      Hệ thống tự động từ chối và cảnh báo nếu phát hiện API bật quyền Withdrawals.
+                      <strong className="text-rose-300 block mb-0.5">{t('rejectWithdraw')}</strong>
+                      {tContent('pillar.reject', 'Hệ thống tự động từ chối và cảnh báo nếu phát hiện API bật quyền Withdrawals.')}
                     </div>
                   </div>
                 </div>
@@ -130,7 +132,7 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                     onClick={onOpenRegister}
                     className="px-5 py-2.5 rounded-lg text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center gap-2 cursor-pointer"
                   >
-                    <span>Trải nghiệm an toàn với 100 Credits</span>
+                    <span>{t('safeExperience')}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -142,11 +144,11 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                   <div className="flex items-center gap-2">
                     <KeyRound className="w-4 h-4 text-emerald-400" />
                     <span className="text-xs font-bold text-white uppercase tracking-wider font-mono">
-                      Bảng Phân Quyền API Binance / OKX
+                      {t('apiPermissions')}
                     </span>
                   </div>
                   <span className="text-[11px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    Bảo mật cấp độ tài chính
+                    {t('financialSecurity')}
                   </span>
                 </div>
 
@@ -174,14 +176,14 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                           </div>
                           <div>
                             <div className="text-xs font-bold text-white leading-snug">
-                              {perm.action}
+                              {tContent(`permission.${idx}.action`, perm.action)}
                             </div>
                             <div
                               className={`text-[11px] mt-0.5 ${
                                 isAllowed ? 'text-slate-400' : 'text-rose-400 font-semibold'
                               }`}
                             >
-                              {perm.note}
+                              {tContent(`permission.${idx}.note`, perm.note)}
                             </div>
                           </div>
                         </div>
@@ -193,7 +195,7 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                               : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
                           }`}
                         >
-                          {isAllowed ? 'ĐƯỢC PHÉP' : 'BỊ CẤM HOÀN TOÀN'}
+                          {isAllowed ? t('allowed') : t('forbidden')}
                         </span>
                       </div>
                     );
@@ -203,7 +205,7 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                 <div className="mt-4 p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-start gap-2.5">
                   <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                   <p className="text-[11px] text-amber-200/90 leading-snug">
-                    <strong>Nguyên tắc vàng:</strong> Bạn không bao giờ phải cung cấp quyền rút tiền cho bất kỳ dịch vụ bên thứ ba nào. Khi tạo API Key, hãy luôn bỏ chọn &ldquo;Enable Withdrawals&rdquo;.
+                    <strong>{t('goldenRule')}</strong> {tContent('pillar.goldenRule', 'Bạn không bao giờ phải cung cấp quyền rút tiền cho bất kỳ dịch vụ bên thứ ba nào. Khi tạo API Key, hãy luôn bỏ chọn “Enable Withdrawals”.')}
                   </p>
                 </div>
               </div>
@@ -217,32 +219,32 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3">
-                  TRỤ CỘT 02
+                  {t('pillar02')}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">
                   White-Box Explainable AI <br />
-                  <span className="text-cyan-400">AI Giải Thích Lý Do Minh Bạch</span>
+                  <span className="text-cyan-400">{t('pillar2Name')}</span>
                 </h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                  Khác với các bot &ldquo;hộp đen&rdquo; giấu diếm thuật toán, Bamboozer công khai tường minh toàn bộ cơ sở phân tích: từ chỉ báo kỹ thuật (RSI, Bollinger, ATR), chỉ số vĩ mô (DXY, VIX, NFP) đến độ đồng thuận 4 khung giờ và điểm tin cậy Confidence Score.
+                  {t('pillar2Description')}
                 </p>
 
                 <div className="grid grid-cols-2 gap-3 mb-6">
                   <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
-                    <div className="text-[11px] text-slate-400 mb-1">Chỉ báo kỹ thuật</div>
+                    <div className="text-[11px] text-slate-400 mb-1">{t('technicalIndicators')}</div>
                     <div className="text-xs font-bold text-white">RSI, MACD, ATR, Bollinger Bands</div>
                   </div>
                   <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
-                    <div className="text-[11px] text-slate-400 mb-1">Dữ liệu vĩ mô</div>
+                    <div className="text-[11px] text-slate-400 mb-1">{t('macroData')}</div>
                     <div className="text-xs font-bold text-white">Fear & Greed, DXY, VIX, NFP</div>
                   </div>
                   <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
-                    <div className="text-[11px] text-slate-400 mb-1">Đồng thuận xu hướng</div>
+                    <div className="text-[11px] text-slate-400 mb-1">{t('trendConsensus')}</div>
                     <div className="text-xs font-bold text-white">Multi-Timeframe 15m/1h/4h/1D</div>
                   </div>
                   <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
-                    <div className="text-[11px] text-slate-400 mb-1">Quản trị rủi ro</div>
-                    <div className="text-xs font-bold text-white">Stop Loss chuẩn toán học ATR</div>
+                    <div className="text-[11px] text-slate-400 mb-1">{t('riskManagement')}</div>
+                    <div className="text-xs font-bold text-white">{t('mathematicalAtr')}</div>
                   </div>
                 </div>
 
@@ -250,7 +252,7 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                   onClick={onOpenRegister}
                   className="px-5 py-2.5 rounded-lg text-xs font-bold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-colors flex items-center gap-2 cursor-pointer"
                 >
-                  <span>Khám phá White-Box AI miễn phí</span>
+                  <span>{t('discoverWhiteBox')}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -262,26 +264,26 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                   <div className="flex items-center justify-between pb-3 border-b border-rose-900/20 mb-3">
                     <div className="flex items-center gap-2 text-rose-400 text-xs font-bold">
                       <X className="w-4 h-4" />
-                      <span>Hộp Đen Truyền Thống</span>
+                      <span>{t('traditionalBlackBox')}</span>
                     </div>
                     <span className="text-[10px] text-rose-400/80 bg-rose-500/10 px-2 py-0.5 rounded">
-                      Rủi ro cao
+                      {t('highRisk')}
                     </span>
                   </div>
 
                   <p className="text-xs text-slate-400 mb-4">
-                    Đưa tín hiệu Mua/Bán không rõ nguyên do. Người dùng không biết tại sao bot vào lệnh và không thể kiểm soát khi thị trường đảo chiều bất ngờ.
+                    {tContent('whitebox.blackDescription', 'Unexplained buy/sell signals with limited user control.')}
                   </p>
 
                   <div className="space-y-2 text-[11px] text-slate-400">
                     <div className="flex items-center gap-2 text-rose-300/80">
-                      <X className="w-3.5 h-3.5 shrink-0" /> Không công khai công thức & dữ liệu
+                      <X className="w-3.5 h-3.5 shrink-0" /> {tContent('whitebox.black.0')}
                     </div>
                     <div className="flex items-center gap-2 text-rose-300/80">
-                      <X className="w-3.5 h-3.5 shrink-0" /> Dễ bị cháy tài khoản khi gồng lỗ
+                      <X className="w-3.5 h-3.5 shrink-0" /> {tContent('whitebox.black.1')}
                     </div>
                     <div className="flex items-center gap-2 text-rose-300/80">
-                      <X className="w-3.5 h-3.5 shrink-0" /> Không có mốc dừng lỗ Stop Loss rõ ràng
+                      <X className="w-3.5 h-3.5 shrink-0" /> {tContent('whitebox.black.2')}
                     </div>
                   </div>
                 </div>
@@ -294,23 +296,23 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                       <span>Bamboozer White-Box AI</span>
                     </div>
                     <span className="text-[10px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded font-mono font-bold">
-                      Minh bạch 100%
+                      {t('transparent100')}
                     </span>
                   </div>
 
                   <p className="text-xs text-slate-300 mb-4">
-                    Cung cấp % Confidence Score, giải trình tường tận điều kiện nến, dòng tiền cá voi và các mốc ATR Stop Loss để bạn tự tin ra quyết định.
+                    {tContent('whitebox.greenDescription')}
                   </p>
 
                   <div className="space-y-2 text-[11px] text-slate-300">
                     <div className="flex items-center gap-2 text-emerald-400">
-                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> Độ tin cậy tính bằng thuật toán Machine Learning
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> {tContent('whitebox.green.0')}
                     </div>
                     <div className="flex items-center gap-2 text-emerald-400">
-                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> Stop Loss tính theo độ biến động thực tế (ATR)
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> {tContent('whitebox.green.1')}
                     </div>
                     <div className="flex items-center gap-2 text-emerald-400">
-                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> Tích hợp tin vĩ mô và chỉ số tâm lý thị trường
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> {tContent('whitebox.green.2')}
                     </div>
                   </div>
                 </div>
@@ -324,13 +326,13 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
           <div className="bg-[#0c121e] border border-slate-800 rounded-2xl p-6 sm:p-8 lg:p-10 transition-all">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-bold bg-teal-500/10 text-teal-400 border border-teal-500/20 mb-3">
-                TRỤ CỘT 03
+                {t('pillar03')}
               </div>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
                 All-in-One Trading Lifecycle
               </h3>
               <p className="text-slate-300 text-xs sm:text-sm">
-                Không cần chuyển đổi qua lại giữa 5 ứng dụng khác nhau. Mọi giai đoạn từ phân tích đến khớp lệnh đều nằm trong một giao diện duy nhất.
+                {t('pillar3Description')}
               </p>
             </div>
 
@@ -342,10 +344,10 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                     01
                   </div>
                   <div className="text-xs font-bold text-white mb-1">
-                    Phân Tích AI
+                    {t('analyzeAi')}
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Quét 1,500+ tài sản, tính điểm Confidence và vùng Entry chuẩn ATR.
+                    {tContent('life.1.description')}
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
@@ -360,10 +362,10 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                     02
                   </div>
                   <div className="text-xs font-bold text-white mb-1">
-                    Sinh Code Chỉ Báo
+                    {t('generateIndicator')}
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Nhập ý tưởng bằng tiếng Việt, AI tự viết code Pine Script trong 5 giây.
+                    {tContent('life.2.description')}
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-cyan-400 font-semibold flex items-center gap-1">
@@ -378,10 +380,10 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                     03
                   </div>
                   <div className="text-xs font-bold text-white mb-1">
-                    Kiểm Thử Backtest
+                    {t('backtest')}
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Kiểm tra Win Rate, Profit Factor và Max Drawdown qua 5 năm dữ liệu nến.
+                    {tContent('life.3.description')}
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-teal-400 font-semibold flex items-center gap-1">
@@ -396,10 +398,10 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                     04
                   </div>
                   <div className="text-xs font-bold text-white mb-1">
-                    Vận Hành Bot
+                    {t('runBot')}
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Khởi động Grid Bot hoặc Smart DCA tự động rải lệnh và chốt lời 24/7.
+                    {tContent('life.4.description')}
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-amber-400 font-semibold flex items-center gap-1">
@@ -414,10 +416,10 @@ export const ValuePillars: React.FC<{ onOpenRegister: () => void }> = ({ onOpenR
                     05
                   </div>
                   <div className="text-xs font-bold text-white mb-1">
-                    Live Terminal &amp; PnL
+                    {t('livePnl')}
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Giám sát hiệu quả vốn, quét tín hiệu radar và can thiệp lệnh tức thời.
+                    {tContent('life.5.description')}
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-emerald-400 font-semibold flex items-center gap-1">

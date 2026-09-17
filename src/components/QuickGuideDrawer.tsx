@@ -1,6 +1,7 @@
 import React from 'react';
 import { PRODUCT_MODULES } from '../data/content';
 import { X, BookOpen, CheckCircle2, ArrowRight, Lightbulb, Sparkles } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 interface QuickGuideDrawerProps {
   isOpen: boolean;
@@ -15,6 +16,7 @@ export const QuickGuideDrawer: React.FC<QuickGuideDrawerProps> = ({
   onClose,
   onOpenRegister
 }) => {
+  const { t, tContent } = useLanguage();
   if (!isOpen || !moduleId) return null;
 
   const currentModule = PRODUCT_MODULES.find((m) => m.id === moduleId) || PRODUCT_MODULES[0];
@@ -34,7 +36,7 @@ export const QuickGuideDrawer: React.FC<QuickGuideDrawerProps> = ({
             <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
               <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 uppercase">
                 <BookOpen className="w-4 h-4" />
-                <span>Feature Tutorial • {currentModule.badge}</span>
+                <span>{t('tutorialLabel')} • {currentModule.badge}</span>
               </div>
               <button
                 onClick={onClose}
@@ -47,10 +49,10 @@ export const QuickGuideDrawer: React.FC<QuickGuideDrawerProps> = ({
 
             {/* Title */}
             <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">
-              {currentModule.quickGuideTitle}
+              {tContent(`guide.${currentModule.id}.title`, currentModule.quickGuideTitle)}
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mb-6">
-              Hướng dẫn thực hành ngắn gọn giúp bạn làm chủ tính năng {currentModule.title} nhanh nhất.
+              {t('guideDescription')} {currentModule.title}.
             </p>
 
             {/* Step-by-Step Cards */}
@@ -73,7 +75,7 @@ export const QuickGuideDrawer: React.FC<QuickGuideDrawerProps> = ({
 
                   <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 flex items-start gap-2">
                     <Lightbulb className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong>Mẹo chuyên gia:</strong> {step.tip}</span>
+                    <span><strong>{t('expertTip')}</strong> {step.tip}</span>
                   </div>
                 </div>
               ))}
@@ -89,14 +91,14 @@ export const QuickGuideDrawer: React.FC<QuickGuideDrawerProps> = ({
               }}
               className="flex-1 py-3 rounded-xl font-bold text-xs text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Thực hành ngay với 100 Credits Free</span>
+              <span>{t('practiceNow')}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={onClose}
               className="py-3 px-5 rounded-xl font-medium text-xs text-slate-300 hover:text-white bg-slate-900 border border-slate-800 cursor-pointer"
             >
-              Đóng lại
+              {t('close')}
             </button>
           </div>
         </div>

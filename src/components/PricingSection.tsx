@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { PRICING_PLANS, CREDIT_USAGE_RULES } from '../data/content';
 import { Check, Zap, Sparkles, HelpCircle, Coins, ArrowRight, Calculator } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpenRegister }) => {
+  const { t, tContent } = useLanguage();
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
   
   // Interactive Credit Calculator state
@@ -29,13 +31,13 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mb-3">
             <Coins className="w-3.5 h-3.5" />
-            <span>Minh Bạch &amp; Linh Hoạt</span>
+            <span>{t('pricingBadge')}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            Bảng Giá Dịch Vụ &amp; Cơ Chế Credits
+            {t('pricingTitle')}
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
-            Lựa chọn gói membership phù hợp với quy mô danh mục của bạn. Nhận ngay 100 Credits miễn phí khi đăng ký lần đầu.
+            {t('pricingDescription')}
           </p>
 
           {/* Billing Cycle Toggle */}
@@ -48,7 +50,7 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              Thanh toán hàng tháng
+              {t('monthly')}
             </button>
             <button
               onClick={() => setBillingCycle('annual')}
@@ -58,9 +60,9 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <span>Thanh toán theo năm</span>
+              <span>{t('annual')}</span>
               <span className="bg-slate-900 text-emerald-300 text-[10px] px-2 py-0.5 rounded-full font-mono font-bold">
-                Tiết kiệm 30% + 10% Bonus
+                {t('saveAnnual')}
               </span>
             </button>
           </div>
@@ -88,7 +90,7 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
               >
                 {plan.badge && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-extrabold font-mono tracking-wider uppercase bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 shadow-md">
-                    {plan.badge}
+                    {tContent(`pricing.${plan.id}.badge`, plan.badge || '')}
                   </div>
                 )}
 
@@ -98,12 +100,12 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
                       {plan.name}
                     </h3>
                     <div className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
-                      {credits} Credits / tháng
+                      {credits} {t('creditsMonth')}
                     </div>
                   </div>
 
                   <p className="text-xs text-slate-400 mb-5 min-h-[32px]">
-                    {plan.highlightFeature}
+                    {tContent(`pricing.${plan.id}.highlight`, plan.highlightFeature)}
                   </p>
 
                   {/* Price */}
@@ -112,7 +114,7 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
                       ${price}
                     </span>
                     <span className="text-xs text-slate-400">
-                      / tháng
+                      {t('perMonth')}
                     </span>
                     {isAnnual && plan.priceMonthly > 0 && (
                       <span className="text-[10px] text-emerald-400 line-through ml-1 font-mono">
@@ -124,16 +126,16 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
                   {/* Core Capacity Limits */}
                   <div className="space-y-2 mb-6 text-xs font-mono">
                     <div className="flex items-center justify-between p-2 rounded bg-slate-900/90 border border-slate-800">
-                      <span className="text-slate-400">Phân tích AI:</span>
-                      <span className="font-bold text-cyan-300">{plan.aiAnalysisLimit}</span>
+                      <span className="text-slate-400">{t('aiAnalysis')}</span>
+                      <span className="font-bold text-cyan-300">{tContent(`pricing.${plan.id}.limit.0`, plan.aiAnalysisLimit)}</span>
                     </div>
                     <div className="flex items-center justify-between p-2 rounded bg-slate-900/90 border border-slate-800">
-                      <span className="text-slate-400">Số lượng Bots:</span>
-                      <span className="font-bold text-emerald-400">{plan.aiBotsLimit}</span>
+                      <span className="text-slate-400">{t('botCount')}</span>
+                      <span className="font-bold text-emerald-400">{tContent(`pricing.${plan.id}.limit.1`, plan.aiBotsLimit)}</span>
                     </div>
                     <div className="flex items-center justify-between p-2 rounded bg-slate-900/90 border border-slate-800">
-                      <span className="text-slate-400">Tài khoản API:</span>
-                      <span className="font-bold text-white">{plan.apiAccountsLimit}</span>
+                      <span className="text-slate-400">{t('apiAccounts')}</span>
+                      <span className="font-bold text-white">{tContent(`pricing.${plan.id}.limit.2`, plan.apiAccountsLimit)}</span>
                     </div>
                   </div>
 
@@ -142,7 +144,7 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
                     {plan.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2">
                         <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                        <span className="leading-snug">{feat}</span>
+                        <span className="leading-snug">{tContent(`pricing.${plan.id}.feature.${idx}`, feat)}</span>
                       </div>
                     ))}
                   </div>
@@ -156,7 +158,7 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
                       : 'bg-slate-800 hover:bg-slate-700 text-white'
                   }`}
                 >
-                  <span>{plan.buttonText}</span>
+                  <span>{tContent(`pricing.${plan.id}.button`, plan.buttonText)}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -171,30 +173,30 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
             <div className="flex items-center gap-2 mb-4">
               <Coins className="w-5 h-5 text-emerald-400" />
               <h3 className="text-lg font-bold text-white">
-                Quy Tắc Trừ Credits Minh Bạch
+                {t('creditRules')}
               </h3>
             </div>
             <p className="text-xs text-slate-300 mb-5 leading-relaxed">
-              Bạn chỉ tiêu thụ Credits khi sử dụng tài nguyên điện toán thực tế. Không phát sinh chi phí ẩn.
+              {t('creditRulesDescription')}
             </p>
 
             <div className="space-y-3">
               {CREDIT_USAGE_RULES.map((rule, idx) => (
                 <div key={idx} className="p-3.5 rounded-xl bg-[#080c14] border border-slate-800/90">
                   <div className="flex items-center justify-between text-xs font-bold text-white mb-1">
-                    <span>{rule.task}</span>
+                    <span>{tContent(`creditRule.${idx}.task`, rule.task)}</span>
                     <span className="text-emerald-400 font-mono">{rule.cost}</span>
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    {rule.desc}
+                    {tContent(`creditRule.${idx}.desc`, rule.desc)}
                   </p>
                 </div>
               ))}
             </div>
 
             <div className="mt-5 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 flex items-center justify-between">
-              <span>Ưu đãi thanh toán năm:</span>
-              <strong className="text-white font-mono">Tiết kiệm 30% + 10% Bonus Credits</strong>
+              <span>{t('annualOffer')}</span>
+              <strong className="text-white font-mono">{t('saveAnnual')} Credits</strong>
             </div>
           </div>
 
@@ -203,19 +205,19 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
             <div className="flex items-center gap-2 mb-4">
               <Calculator className="w-5 h-5 text-cyan-400" />
               <h3 className="text-lg font-bold text-white">
-                Công Cụ Ước Tính Nhu Cầu Credits Hàng Tháng
+                {t('estimator')}
               </h3>
             </div>
             <p className="text-xs text-slate-300 mb-6">
-              Kéo thanh trượt để xác định số lượng Credits và gói thành viên tối ưu nhất cho bạn.
+              {t('estimatorDescription')}
             </p>
 
             <div className="space-y-6">
               {/* Slider 1: Daily AI analyses */}
               <div>
                 <div className="flex items-center justify-between text-xs mb-2">
-                  <span className="text-slate-300 font-medium">Số lượt phân tích AI mỗi ngày:</span>
-                  <span className="font-mono font-bold text-cyan-300 text-sm">{dailyAnalyses} lượt / ngày</span>
+                  <span className="text-slate-300 font-medium">{t('dailyAnalyses')}</span>
+                  <span className="font-mono font-bold text-cyan-300 text-sm">{dailyAnalyses} {tContent('pricing.runsPerDay')}</span>
                 </div>
                 <input
                   type="range"
@@ -235,8 +237,8 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
               {/* Slider 2: Number of active bots */}
               <div>
                 <div className="flex items-center justify-between text-xs mb-2">
-                  <span className="text-slate-300 font-medium">Số lượng Bot muốn chạy đồng thời:</span>
-                  <span className="font-mono font-bold text-emerald-400 text-sm">{activeBotsCount} Bots</span>
+                  <span className="text-slate-300 font-medium">{t('simultaneousBots')}</span>
+                  <span className="font-mono font-bold text-emerald-400 text-sm">{activeBotsCount} {tContent('pricing.gridBot')}</span>
                 </div>
                 <input
                   type="range"
@@ -256,14 +258,14 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
               {/* Result Recommendation Box */}
               <div className="p-4 rounded-xl bg-[#080c14] border border-slate-800">
                 <div className="flex items-center justify-between text-xs mb-2">
-                  <span className="text-slate-400">Nhu cầu ước tính:</span>
+                  <span className="text-slate-400">{tContent('pricing.estimate')}</span>
                   <span className="text-lg font-mono font-black text-emerald-400">
                     ~{calculatedCreditsNeeded} Credits / tháng
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-800/80">
-                  <span className="text-slate-300 font-semibold">Gói khuyến nghị:</span>
+                  <span className="text-slate-300 font-semibold">{tContent('pricing.recommended')}</span>
                   <span className="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold font-mono border border-emerald-500/30">
                     {getSuggestedPlan()}
                   </span>
@@ -274,7 +276,7 @@ export const PricingSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
                 onClick={onOpenRegister}
                 className="w-full py-3 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Đăng ký nhận 100 Credits trải nghiệm ngay</span>
+                <span>{t('claimCreditsNow')}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

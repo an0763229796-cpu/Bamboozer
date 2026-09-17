@@ -23,6 +23,7 @@ import {
   Clock,
   ArrowUpRight
 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 interface ProductModulesProps {
   onOpenQuickGuide: (moduleId: string) => void;
@@ -33,6 +34,7 @@ export const ProductModules: React.FC<ProductModulesProps> = ({
   onOpenQuickGuide,
   onOpenRegister
 }) => {
+  const { t, tContent } = useLanguage();
   const [activeModuleId, setActiveModuleId] = useState<string>('ai-analysis');
 
   // Interactive state for IDE module
@@ -96,13 +98,13 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Hệ Sinh Thái Toàn Diện</span>
+            <span>{t('ecosystem')}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            Trình Diễn 6 Chức Năng Cốt Lõi Của Bamboozer
+            {t('modulesTitle')}
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Khám phá các công cụ quant trading hiện đại từ phân tích AI, lập trình chỉ báo, bot tự động hóa đến trạm giao dịch trực tiếp.
+            {t('modulesDescription')}
           </p>
 
           {/* Module Selector Navigation Tabs */}
@@ -138,29 +140,29 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                     {activeModule.badge}
                   </span>
                   <span className="text-xs text-slate-400 font-semibold">
-                    Interactive Feature Demo
+                    {t('interactiveDemo')}
                   </span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
-                  {activeModule.title}
+                  {tContent(`module.${activeModule.id}.title`, activeModule.title)}
                 </h3>
                 <h4 className="text-sm font-semibold text-emerald-400 mb-4">
-                  {activeModule.vietnameseName}
+                  {tContent(`module.${activeModule.id}.name`, activeModule.vietnameseName || activeModule.title)}
                 </h4>
 
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                  {activeModule.description}
+                  {tContent(`module.${activeModule.id}.description`, activeModule.description)}
                 </p>
 
                 {/* Bullet Highlights */}
                 <div className="space-y-3 mb-8">
-                  {activeModule.highlights.map((hl, idx) => (
+                    {activeModule.highlights.map((hl, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
                       <div className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
                         <Check className="w-3 h-3" />
                       </div>
-                      <span className="leading-snug">{hl}</span>
+                      <span className="leading-snug">{tContent(`module.${activeModule.id}.highlight.${idx}`, hl)}</span>
                     </div>
                   ))}
                 </div>
@@ -173,14 +175,14 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                   className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <BookOpen className="w-4 h-4 text-cyan-400" />
-                  <span>Xem Hướng Dẫn Nhanh</span>
+                  <span>{tContent('product.quickGuide')}</span>
                 </button>
 
                 <button
                   onClick={onOpenRegister}
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Dùng thử tính năng này</span>
+                  <span>{tContent('product.tryFeature')}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -194,10 +196,10 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                   <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
                     <div className="flex items-center gap-2 text-xs font-bold text-white font-mono">
                       <Sparkles className="w-4 h-4 text-emerald-400" />
-                      <span>AI Multi-Asset Screener &amp; Confidence Card</span>
+                      <span>{tContent('product.aiScreener')}</span>
                     </div>
                     <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                      Realtime Consensus
+                      {tContent('product.realtimeConsensus')}
                     </span>
                   </div>
 
@@ -225,21 +227,21 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
 
                     <div className="grid grid-cols-3 gap-2 text-xs font-mono mb-4">
                       <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                        <div className="text-[10px] text-slate-400">Vùng Entry</div>
+                        <div className="text-[10px] text-slate-400">{tContent('product.entry')}</div>
                         <div className="text-cyan-300 font-bold">$93,800 - $94,400</div>
                       </div>
                       <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                        <div className="text-[10px] text-slate-400">Stop Loss (1.8x ATR)</div>
+                        <div className="text-[10px] text-slate-400">{tContent('product.atrStop')}</div>
                         <div className="text-rose-400 font-bold">$92,100</div>
                       </div>
                       <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                        <div className="text-[10px] text-slate-400">Take Profit 1 &amp; 2</div>
+                        <div className="text-[10px] text-slate-400">{tContent('product.takeProfit')}</div>
                         <div className="text-emerald-400 font-bold">$96,800 / $99,500</div>
                       </div>
                     </div>
 
                     <div className="p-3 bg-slate-950/60 rounded-lg border border-slate-800/80 text-[11px] text-slate-300">
-                      <strong className="text-emerald-400 block mb-1">Cơ sở toán học &amp; vĩ mô:</strong>
+                      <strong className="text-emerald-400 block mb-1">{tContent('product.mathMacro')}</strong>
                       RSI 14 khung 4H tạo phân kỳ ẩn tăng giá, giá duy trì trên dải EMA 50/200, dòng tiền Chaikin CMF dương +0.28, chỉ số Fear &amp; Greed 72.
                     </div>
                   </div>
@@ -249,7 +251,7 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                       onClick={() => onOpenQuickGuide('ai-analysis')}
                       className="text-xs text-emerald-400 hover:text-emerald-300 underline font-semibold cursor-pointer"
                     >
-                      Xem kịch bản hướng dẫn đọc thẻ tín hiệu AI chuẩn ATR
+                      {tContent('product.readGuide')}
                     </button>
                   </div>
                 </div>
@@ -271,7 +273,7 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                   {/* Prompt Input Box */}
                   <div className="mb-3">
                     <label className="text-[11px] font-semibold text-slate-300 mb-1.5 block">
-                      Nhập ý tưởng chiến lược trading bằng ngôn ngữ tự nhiên:
+                      {tContent('product.promptLabel')}
                     </label>
                     <div className="flex gap-2">
                       <input
@@ -287,7 +289,7 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                         className="px-4 py-2 rounded-lg text-xs font-bold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                       >
                         <Zap className="w-3.5 h-3.5" />
-                        <span>{isGeneratingCode ? 'AI Đang Viết Code...' : 'Sinh Code AI'}</span>
+                        <span>{isGeneratingCode ? tContent('product.writing') : tContent('product.generate')}</span>
                       </button>
                     </div>
                   </div>
@@ -311,10 +313,10 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                   <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
                     <div className="flex items-center gap-2 text-xs font-bold text-white font-mono">
                       <Bot className="w-4 h-4 text-amber-400" />
-                      <span>Cấu Hình Grid Bot &amp; Strategy Marketplace</span>
+                      <span>{tContent('product.gridConfig')}</span>
                     </div>
                     <span className="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                      4 Kiến Trúc Bot
+                      {tContent('product.fourArchitectures')}
                     </span>
                   </div>
 
@@ -336,23 +338,23 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                   {/* Interactive Grid Range Visualizer */}
                   <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 mb-3">
                     <div className="flex items-center justify-between text-xs mb-3">
-                      <span className="font-bold text-white">Biên độ lưới giá (Grid Bounds)</span>
+                      <span className="font-bold text-white">{tContent('product.gridBounds')}</span>
                       <span className="text-emerald-400 font-mono text-[11px]">
-                        Lợi nhuận ước tính: +1.2% / chu kỳ lưới
+                        {tContent('product.estimatedProfit')}
                       </span>
                     </div>
 
                     <div className="space-y-2 text-xs font-mono">
                       <div className="flex items-center justify-between">
-                        <span className="text-slate-400">Giới hạn trên (Upper):</span>
+                        <span className="text-slate-400">{tContent('product.upper')}</span>
                         <span className="text-rose-400 font-bold">${gridUpper.toLocaleString()}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-slate-400">Giới hạn dưới (Lower):</span>
+                        <span className="text-slate-400">{tContent('product.lower')}</span>
                         <span className="text-emerald-400 font-bold">${gridLower.toLocaleString()}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-slate-400">Số lượng lưới (Grid Count):</span>
+                        <span className="text-slate-400">{t('gridCount')}</span>
                         <span className="text-cyan-400 font-bold">{gridCount} Lưới</span>
                       </div>
                     </div>
@@ -375,7 +377,7 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                   <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
                     <div className="flex items-center gap-2 text-xs font-bold text-white font-mono">
                       <BarChart2 className="w-4 h-4 text-emerald-400" />
-                      <span>Live Portfolio Dashboard &amp; PnL Metrics</span>
+                      <span>{t('liveDashboard')}</span>
                     </div>
                     <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
                       Non-Custodial Sync
@@ -387,33 +389,33 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                     <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                       <div className="text-[10px] text-slate-400 uppercase font-mono">Total Equity</div>
                       <div className="text-lg font-mono font-bold text-white mt-0.5">$248,520</div>
-                      <div className="text-[10px] text-emerald-400 font-mono">+18.4% tháng này</div>
+                      <div className="text-[10px] text-emerald-400 font-mono">{t('monthlyGain')}</div>
                     </div>
 
                     <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                       <div className="text-[10px] text-slate-400 uppercase font-mono">Win Rate %</div>
                       <div className="text-lg font-mono font-bold text-emerald-400 mt-0.5">88.4%</div>
-                      <div className="text-[10px] text-slate-400 font-mono">142/160 lệnh thắng</div>
+                      <div className="text-[10px] text-slate-400 font-mono">{t('winningTrades')}</div>
                     </div>
 
                     <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                       <div className="text-[10px] text-slate-400 uppercase font-mono">Profit Factor</div>
                       <div className="text-lg font-mono font-bold text-cyan-400 mt-0.5">2.45</div>
-                      <div className="text-[10px] text-slate-400 font-mono">Chuẩn quỹ định lượng</div>
+                      <div className="text-[10px] text-slate-400 font-mono">{t('quantStandard')}</div>
                     </div>
 
                     <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                       <div className="text-[10px] text-slate-400 uppercase font-mono">Max Drawdown</div>
                       <div className="text-lg font-mono font-bold text-teal-400 mt-0.5">-6.2%</div>
-                      <div className="text-[10px] text-emerald-400 font-mono">Kiểm soát rủi ro cao</div>
+                      <div className="text-[10px] text-emerald-400 font-mono">{t('highRiskControl')}</div>
                     </div>
                   </div>
 
                   {/* Simulated PnL Calendar Heatmap */}
                   <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
                     <div className="flex items-center justify-between text-xs mb-2">
-                      <span className="font-semibold text-slate-300">Lịch PnL 14 Ngày Gần Nhất:</span>
-                      <span className="text-[10px] text-emerald-400 font-mono">13 Ngày Xanh / 1 Ngày Đỏ</span>
+                      <span className="font-semibold text-slate-300">{t('pnlCalendar')}</span>
+                      <span className="text-[10px] text-emerald-400 font-mono">{t('pnlSummary')}</span>
                     </div>
 
                     <div className="grid grid-cols-7 gap-1.5 text-center font-mono text-[10px]">
@@ -506,17 +508,17 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                   <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
                     <div className="flex items-center gap-2 text-xs font-bold text-white font-mono">
                       <Key className="w-4 h-4 text-emerald-400" />
-                      <span>Kết Nối API Sàn An Toàn (Non-Custodial)</span>
+                      <span>{tContent('product.exchangeConnect')}</span>
                     </div>
                     <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                      Mã Hóa AES-256
+                      {tContent('product.encryption')}
                     </span>
                   </div>
 
                   <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
                     <div>
                       <label className="text-xs font-semibold text-slate-300 mb-1 block">
-                        Chọn Sàn Giao Dịch:
+                        {tContent('product.chooseExchange')}
                       </label>
                       <select className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-white">
                         <option>Binance (Official Partner API v3)</option>
@@ -528,7 +530,7 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
 
                     <div>
                       <label className="text-xs font-semibold text-slate-300 mb-1 block">
-                        API Key:
+                        {tContent('product.apiKey')}
                       </label>
                       <input
                         type="text"
@@ -541,8 +543,8 @@ alertcondition(bullishConsensus, "Bamboozer Webhook Trigger: BUY", "Signal detec
                     <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-2 text-xs text-emerald-300">
                       <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       <div>
-                        <strong className="text-white block">Xác minh bảo mật:</strong>
-                        Quyền &ldquo;Enable Withdrawals&rdquo; đã bị vô hiệu hóa hoàn toàn trên API này. Bamboozer không thể rút tiền của bạn.
+                        <strong className="text-white block">{tContent('product.securityVerify')}</strong>
+                        {tContent('product.withdrawDisabled')}
                       </div>
                     </div>
                   </div>

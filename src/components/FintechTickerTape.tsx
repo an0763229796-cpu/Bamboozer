@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, ShieldCheck, Activity, Cpu, Wifi } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 interface TickerAsset {
   symbol: string;
@@ -24,6 +25,7 @@ const INITIAL_TICKER_DATA: TickerAsset[] = [
 ];
 
 export const FintechTickerTape: React.FC = () => {
+  const { t } = useLanguage();
   const [tickerList, setTickerList] = useState<TickerAsset[]>(INITIAL_TICKER_DATA);
   const [latency, setLatency] = useState<number>(12);
   const [blockHeight, setBlockHeight] = useState<number>(942851);
@@ -69,7 +71,7 @@ export const FintechTickerTape: React.FC = () => {
           <span className="text-slate-600">|</span>
           <span className="flex items-center gap-1 text-slate-300">
             <Wifi className="w-3 h-3 text-emerald-400" />
-            <span>Độ trễ WebSocket: <strong className="text-white tabular-nums">{latency}ms</strong></span>
+            <span>{t('websocketLatency')} <strong className="text-white tabular-nums">{latency}ms</strong></span>
           </span>
 
           <span className="text-slate-600">|</span>
@@ -81,7 +83,7 @@ export const FintechTickerTape: React.FC = () => {
 
         <div className="flex items-center gap-4">
           <span className="text-slate-300">
-            Khối xác thực: <strong className="text-cyan-300 tabular-nums">#{blockHeight.toLocaleString()}</strong>
+            {t('blockHeight')} <strong className="text-cyan-300 tabular-nums">#{blockHeight.toLocaleString()}</strong>
           </span>
           <span className="text-slate-600">|</span>
           <span className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[9px] font-bold">

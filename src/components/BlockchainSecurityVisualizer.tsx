@@ -14,8 +14,10 @@ import {
   Hash,
   Fingerprint
 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void }> = ({ onOpenRegister }) => {
+  const { t, tContent } = useLanguage();
   const [testSymbol, setTestSymbol] = useState<'BTC' | 'ETH' | 'SOL'>('BTC');
   const [signedHash, setSignedHash] = useState<string>('0x7d94e6fa89c021b3a65e94b210f823dc91e45b90321a8f94');
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
@@ -40,13 +42,13 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mb-3 font-mono">
             <Fingerprint className="w-3.5 h-3.5" />
-            <span>MÔ HÌNH BẢO MẬT MÃ HÓA FINTECH &amp; WEB3</span>
+            <span>{t('blockchainBadge')}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            Kiến Trúc Non-Custodial: Tuyệt Đối Không Giữ Tiền
+            {t('blockchainTitle')}
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Áp dụng chuẩn mã hóa <strong className="text-white">AES-256-GCM Enclave</strong> kết hợp cơ chế ký lệnh độc lập <strong className="text-emerald-400">HMAC-SHA256</strong>. Tài sản luôn nằm an toàn 100% trong ví sàn cá nhân của bạn.
+            {t('blockchainDescription')}
           </p>
         </div>
 
@@ -64,14 +66,14 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
                 </span>
               </div>
               <h3 className="text-sm font-bold text-white mb-1">
-                Client-Side Key Enclave
+                {t('securityStage1')}
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed mb-3">
-                Khóa API được mã hóa ngay trên trình duyệt bằng chuẩn quân sự AES-256-GCM.
+                {tContent('security.1.description', 'API keys are encrypted in the browser with AES-256-GCM.')}
               </p>
             </div>
             <div className="pt-3 border-t border-slate-800/80 text-[10px] font-mono text-slate-500 flex items-center justify-between">
-              <span>Lưu trữ: Local IndexedDB</span>
+              <span>{t('storageLabel')} Local IndexedDB</span>
               <span className="text-emerald-400 font-bold">Zero-Cloud Leak</span>
             </div>
           </div>
@@ -88,14 +90,14 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
                 </span>
               </div>
               <h3 className="text-sm font-bold text-white mb-1">
-                AI Quant Signal Consensus
+                {t('securityStage2')}
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed mb-3">
-                Hệ thống AI xử lý hàng triệu điểm dữ liệu thị trường và sinh chỉ thị vào lệnh toán học.
+                {tContent('security.2.description', 'AI processes millions of market data points and generates mathematical trade instructions.')}
               </p>
             </div>
             <div className="pt-3 border-t border-slate-800/80 text-[10px] font-mono text-slate-500 flex items-center justify-between">
-              <span>Độ trễ xử lý: &lt; 15ms</span>
+              <span>{t('processingLatency')} &lt; 15ms</span>
               <span className="text-cyan-400 font-bold">Confidence 84%</span>
             </div>
           </div>
@@ -112,14 +114,14 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
                 </span>
               </div>
               <h3 className="text-sm font-bold text-white mb-1">
-                HMAC-SHA256 Signature
+                {t('securityStage3')}
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed mb-3">
-                Mỗi gói tin đặt lệnh được đóng dấu băm mã hóa xác thực trước khi truyền qua TLS 1.3.
+                {tContent('security.3.description', 'Every order payload is cryptographically signed before transmission over TLS 1.3.')}
               </p>
             </div>
             <div className="pt-3 border-t border-slate-800/80 text-[10px] font-mono text-slate-500 flex items-center justify-between">
-              <span>Chuẩn ký: WebHook HMAC</span>
+              <span>{t('signatureStandard')} WebHook HMAC</span>
               <span className="text-teal-400 font-bold">Tamper-Proof</span>
             </div>
           </div>
@@ -136,15 +138,15 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
                 </span>
               </div>
               <h3 className="text-sm font-bold text-white mb-1">
-                Zero-Withdrawal Lock
+                {t('securityStage4')}
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed mb-3">
-                API Key trên sàn Binance/OKX bị khóa vĩnh viễn quyền rút tiền (`CanWithdraw = false`).
+                {tContent('security.4.description', 'Binance/OKX API keys permanently disable withdrawals (CanWithdraw = false).')}
               </p>
             </div>
             <div className="pt-3 border-t border-slate-800/80 text-[10px] font-mono text-slate-500 flex items-center justify-between">
-              <span>Quyền rút tiền: 0x0</span>
-              <span className="text-emerald-400 font-bold">An Toàn 100%</span>
+              <span>{t('withdrawalPermission')} 0x0</span>
+              <span className="text-emerald-400 font-bold">{t('safe100')}</span>
             </div>
           </div>
         </div>
@@ -154,11 +156,11 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800 mb-5">
             <div className="flex items-center gap-2 font-mono text-xs font-bold text-white">
               <Terminal className="w-4 h-4 text-emerald-400" />
-              <span>TRÌNH MÔ PHỎNG XÁC THỰC MÃ HÓA LỆNH (NON-CUSTODIAL PROOF)</span>
+              <span>{t('terminalProof')}</span>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-400 font-mono">Chọn tài sản:</span>
+              <span className="text-xs text-slate-400 font-mono">{t('chooseAsset')}</span>
               {(['BTC', 'ETH', 'SOL'] as const).map((sym) => (
                 <button
                   key={sym}
@@ -181,7 +183,7 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
               <div className="flex items-center justify-between text-[10px] text-slate-500 pb-2 border-b border-slate-900 mb-2">
                 <span>ENCRYPTED_INTENT_DISPATCH.JSON</span>
                 <span className="text-emerald-400">
-                  {isVerifying ? 'CALCULATING HASH...' : 'SHA-256 VERIFIED'}
+                  {isVerifying ? t('calculating') : 'SHA-256 VERIFIED'}
                 </span>
               </div>
               <pre className="text-emerald-400/90">
@@ -204,24 +206,24 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
                 <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-white block font-mono text-[11px]">Không Chạm Tiền Mặt</strong>
-                    <span className="text-[11px] text-slate-400">Bamboozer không có ví nạp, không giữ private key rút tiền.</span>
+                    <strong className="text-white block font-mono text-[11px]">{t('noCash')}</strong>
+                    <span className="text-[11px] text-slate-400">{tContent('terminal.noCashDescription', 'Bamboozer không có ví nạp, không giữ private key rút tiền.')}</span>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-white block font-mono text-[11px]">Toàn Quyền Ngắt Kết Nối</strong>
-                    <span className="text-[11px] text-slate-400">Xóa API Key trên sàn của bạn sẽ vô hiệu hóa toàn bộ lệnh ngay tức thì.</span>
+                    <strong className="text-white block font-mono text-[11px]">{t('disconnectControl')}</strong>
+                    <span className="text-[11px] text-slate-400">{tContent('terminal.disconnectDescription', 'Xóa API Key trên sàn của bạn sẽ vô hiệu hóa toàn bộ lệnh ngay tức thì.')}</span>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-white block font-mono text-[11px]">Kiểm Toán Realtime</strong>
-                    <span className="text-[11px] text-slate-400">Mọi lệnh khớp xuất hiện trực tiếp trên ứng dụng sàn của bạn.</span>
+                    <strong className="text-white block font-mono text-[11px]">{t('realtimeAudit')}</strong>
+                    <span className="text-[11px] text-slate-400">{tContent('terminal.auditDescription', 'Mọi lệnh khớp xuất hiện trực tiếp trên ứng dụng sàn của bạn.')}</span>
                   </div>
                 </div>
               </div>
@@ -230,7 +232,7 @@ export const BlockchainSecurityVisualizer: React.FC<{ onOpenRegister: () => void
                 onClick={onOpenRegister}
                 className="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-emerald-500/20"
               >
-                <span>Tạo kết nối Non-Custodial đầu tiên</span>
+                <span>{t('firstConnection')}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

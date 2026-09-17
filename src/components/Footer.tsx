@@ -1,6 +1,7 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/content';
 import { ShieldCheck, Mail, Globe, AlertOctagon, Heart } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 export const Footer: React.FC<{ 
   onOpenRegister: () => void; 
@@ -11,6 +12,7 @@ export const Footer: React.FC<{
   onOpenReferral,
   onOpenContact
 }) => {
+  const { t } = useLanguage();
   return (
     <footer className="bg-[#060910] text-slate-400 border-t border-slate-800/80 pt-16 pb-12 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,15 +34,15 @@ export const Footer: React.FC<{
             </div>
 
             <p className="text-slate-400 leading-relaxed mb-4 max-w-sm">
-              Nền tảng tự động hóa giao dịch định lượng AI đa tài sản theo mô hình Non-Custodial an toàn tuyệt đối. Tiền luôn nằm trên sàn cá nhân của bạn.
+              {t('companyDesc')}
             </p>
 
             <div className="space-y-1.5 text-[11px] text-slate-400">
-              <p><strong className="text-slate-300">Đơn vị vận hành:</strong> {COMPANY_INFO.legalEntity}</p>
-              <p><strong className="text-slate-300">Quốc gia:</strong> {COMPANY_INFO.country}</p>
-              <p><strong className="text-slate-300">Mã doanh nghiệp (UEN):</strong> {COMPANY_INFO.uen}</p>
+              <p><strong className="text-slate-300">{t('operator')}</strong> {COMPANY_INFO.legalEntity}</p>
+              <p><strong className="text-slate-300">{t('countryLabel')}</strong> {COMPANY_INFO.country}</p>
+              <p><strong className="text-slate-300">{t('uenLabel')}</strong> {COMPANY_INFO.uen}</p>
               <p className="flex items-center gap-2 flex-wrap">
-                <strong className="text-slate-300">Email:</strong> 
+                <strong className="text-slate-300">{t('emailLabel')}</strong>
                 <a href={`mailto:${COMPANY_INFO.supportEmail}`} className="text-emerald-400 hover:underline">{COMPANY_INFO.supportEmail}</a>
                 {onOpenContact && (
                   <button 
@@ -48,7 +50,7 @@ export const Footer: React.FC<{
                     className="inline-flex items-center gap-1 text-[10px] font-semibold text-cyan-300 hover:text-cyan-200 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30 cursor-pointer"
                   >
                     <Mail className="w-3 h-3" />
-                    <span>Gửi biểu mẫu</span>
+                    <span>{t('sendForm')}</span>
                   </button>
                 )}
               </p>
@@ -58,38 +60,38 @@ export const Footer: React.FC<{
           {/* Col 3: Product Navigation */}
           <div>
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 font-mono">
-              Sản Phẩm
+              {t('product')}
             </h4>
             <ul className="space-y-2.5">
-              <li><a href="#hero-section" className="hover:text-emerald-400 transition-colors">AI Asset Analysis</a></li>
-              <li><a href="#modules" className="hover:text-emerald-400 transition-colors">Indicator IDE (Pine Script)</a></li>
-              <li><a href="#modules" className="hover:text-emerald-400 transition-colors">Grid Bots &amp; Smart DCA</a></li>
-              <li><a href="#modules" className="hover:text-emerald-400 transition-colors">Strategy Marketplace</a></li>
-              <li><a href="#modules" className="hover:text-emerald-400 transition-colors">Trading Terminal</a></li>
-              <li><a href="#integrations" className="hover:text-emerald-400 transition-colors">Kết Nối API Sàn</a></li>
+              <li><a href="#hero-section" className="hover:text-emerald-400 transition-colors">{t('footerProductAsset')}</a></li>
+              <li><a href="#modules" className="hover:text-emerald-400 transition-colors">{t('footerProductIndicator')}</a></li>
+              <li><a href="#modules" className="hover:text-emerald-400 transition-colors">{t('footerProductGrid')}</a></li>
+              <li><a href="#modules" className="hover:text-emerald-400 transition-colors">{t('footerProductMarketplace')}</a></li>
+              <li><a href="#modules" className="hover:text-emerald-400 transition-colors">{t('footerProductTerminal')}</a></li>
+              <li><a href="#integrations" className="hover:text-emerald-400 transition-colors">{t('footerProductExchange')}</a></li>
             </ul>
           </div>
 
           {/* Col 4: Resources & Education */}
           <div>
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 font-mono">
-              Tài Nguyên &amp; Video
+              {t('resources')}
             </h4>
             <ul className="space-y-2.5">
-              <li><a href="#tutorials" className="hover:text-emerald-400 transition-colors">Video Tutorial Center</a></li>
-              <li><a href="#onboarding" className="hover:text-emerald-400 transition-colors">Quy trình Onboarding 3 bước</a></li>
-              <li><a href="#pricing" className="hover:text-emerald-400 transition-colors">Bảng giá &amp; Cơ chế Credits</a></li>
+              <li><a href="#tutorials" className="hover:text-emerald-400 transition-colors">{t('footerResourceTutorials')}</a></li>
+              <li><a href="#onboarding" className="hover:text-emerald-400 transition-colors">{t('footerResourceOnboarding')}</a></li>
+              <li><a href="#pricing" className="hover:text-emerald-400 transition-colors">{t('footerResourcePricing')}</a></li>
               <li>
                 <button onClick={onOpenReferral} className="hover:text-emerald-400 transition-colors text-left cursor-pointer">
-                  Chương trình Giới Thiệu (Referral)
+                  {t('footerResourceReferral')}
                 </button>
               </li>
-              <li><a href="#faq" className="hover:text-emerald-400 transition-colors">Câu hỏi thường gặp (FAQ)</a></li>
+              <li><a href="#faq" className="hover:text-emerald-400 transition-colors">{t('footerResourceFaq')}</a></li>
               {onOpenContact && (
                 <li>
                   <button onClick={onOpenContact} className="text-cyan-300 hover:text-cyan-200 transition-colors text-left cursor-pointer flex items-center gap-1 font-medium">
                     <Mail className="w-3 h-3" />
-                    <span>Liên hệ hỗ trợ (Gửi Email)</span>
+                    <span>{t('footerResourceSupport')}</span>
                   </button>
                 </li>
               )}
@@ -99,16 +101,16 @@ export const Footer: React.FC<{
           {/* Col 5: Safety & Status */}
           <div>
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 font-mono">
-              Bảo Mật &amp; Cam Kết
+              {t('safetyCommitment')}
             </h4>
             <div className="space-y-3">
               <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
                 <div className="flex items-center gap-2 text-emerald-400 font-bold mb-1">
                   <ShieldCheck className="w-4 h-4" />
-                  <span>Non-Custodial 100%</span>
+                  <span>{t('footerSafetyNonCustodial')}</span>
                 </div>
                 <p className="text-[11px] text-slate-400 leading-snug">
-                  Không lưu ký tài sản. Không yêu cầu quyền rút tiền.
+                  {t('footerSafetyNote')}
                 </p>
               </div>
 
@@ -116,7 +118,7 @@ export const Footer: React.FC<{
                 onClick={onOpenRegister}
                 className="w-full py-2.5 px-3 rounded-xl font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors text-center cursor-pointer"
               >
-                Nhận 100 Credits Free
+                {t('claimCredits')}
               </button>
             </div>
           </div>
@@ -126,27 +128,27 @@ export const Footer: React.FC<{
         <div className="p-5 rounded-2xl bg-[#090d16] border border-slate-800/90 mb-10 text-[11px] leading-relaxed text-slate-400">
           <div className="flex items-center gap-2 text-amber-400 font-bold mb-2">
             <AlertOctagon className="w-4 h-4 shrink-0" />
-            <span>Tuyên Bố Miễn Trừ Trách Nhiệm &amp; Cảnh Báo Rủi Ro (Risk Disclosure)</span>
+            <span>{t('riskDisclosure')}</span>
           </div>
           <p className="mb-2">
-            Giao dịch tài chính, bao gồm tiền mã hóa, cổ phiếu, hàng hóa và ngoại hối có mức độ rủi ro cao và không phù hợp với tất cả các nhà đầu tư. Bạn có thể mất một phần hoặc toàn bộ số vốn đã đầu tư.
+            {t('footerRiskP1')}
           </p>
           <p>
-            Các phân tích thị trường, chỉ số độ tin cậy (Confidence Score) và tín hiệu từ Bamboozer AI được xây dựng dựa trên các mô hình toán học và định lượng nhằm mục đích cung cấp thông tin tham khảo kỹ thuật, hoàn toàn không cấu thành lời khuyên đầu tư tài chính hay bảo đảm lợi nhuận trong tương lai. Người dùng chịu trách nhiệm duy nhất cho các quyết định giao dịch của mình.
+            {t('footerRiskP2')}
           </p>
         </div>
 
         {/* Copyright & Meta */}
         <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
           <div>
-            &copy; {new Date().getFullYear()} VIDI VICI TECHNOLOGY PTE. LTD. Tất cả quyền được bảo lưu.
+            &copy; {new Date().getFullYear()} {t('footerCopyright')}
           </div>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-slate-200">Điều Khoản Dịch Vụ</a>
+            <a href="#" className="hover:text-slate-200">{t('terms')}</a>
             <span>•</span>
-            <a href="#" className="hover:text-slate-200">Chính Sách Bảo Mật</a>
+            <a href="#" className="hover:text-slate-200">{t('privacy')}</a>
             <span>•</span>
-            <a href="#" className="hover:text-slate-200">Bảo Mật API</a>
+            <a href="#" className="hover:text-slate-200">{t('apiSecurity')}</a>
           </div>
         </div>
       </div>

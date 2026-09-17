@@ -14,11 +14,13 @@ import {
   BookOpen
 } from 'lucide-react';
 import { VideoTutorial } from '../types';
+import { useLanguage } from '../i18n';
 
 export const VideoTutorialCenter: React.FC<{ 
   onOpenRegister: () => void;
   onOpenQuickGuide: (id: string) => void;
 }> = ({ onOpenRegister, onOpenQuickGuide }) => {
+  const { t, tContent } = useLanguage();
   const [activeVideoId, setActiveVideoId] = useState<number>(1);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(false);
@@ -42,10 +44,10 @@ export const VideoTutorialCenter: React.FC<{
             <span>Bamboozer Academy &amp; Masterclass</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            Trung Tâm Video Hướng Dẫn Tính Năng
+            {t('tutorials')}
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Học cách làm chủ toàn bộ nền tảng chỉ trong 15 phút với bộ video trực quan, có thuyết minh chi tiết từng bước cho người mới và trader chuyên nghiệp.
+            {t('tutorialsDescription')}
           </p>
         </div>
 
@@ -64,7 +66,7 @@ export const VideoTutorialCenter: React.FC<{
                   <span className="px-2 py-0.5 rounded bg-slate-900/90 text-emerald-400 border border-emerald-500/30">
                     BAMBOOZER HD TUTORIAL #{activeVideo.id}
                   </span>
-                  <span>{activeVideo.category}</span>
+                  <span>{tContent(`video.${activeVideo.id}.category`, activeVideo.category)}</span>
                 </div>
 
                 {/* Simulated Visual Presentation */}
@@ -73,7 +75,7 @@ export const VideoTutorialCenter: React.FC<{
                     <Sparkles className="w-8 h-8 mx-auto" />
                   </div>
                   <h4 className="text-lg sm:text-xl font-extrabold text-white max-w-md mx-auto mb-2">
-                    {activeVideo.vietnameseTitle}
+                    {tContent(`video.${activeVideo.id}.title`, activeVideo.vietnameseTitle)}
                   </h4>
                   <p className="text-xs text-slate-300 font-mono">
                     Độ dài: {activeVideo.duration} • Thuyết minh chuẩn Studio
@@ -136,7 +138,7 @@ export const VideoTutorialCenter: React.FC<{
             <div className="p-6">
               <div className="flex items-center justify-between gap-3 mb-2">
                 <span className="text-xs font-mono font-bold text-emerald-400 uppercase">
-                  {activeVideo.category}
+                  {tContent(`video.${activeVideo.id}.category`, activeVideo.category)}
                 </span>
                 <span className="text-xs text-slate-400 flex items-center gap-1 font-mono">
                   <Clock className="w-3.5 h-3.5" />
@@ -145,23 +147,23 @@ export const VideoTutorialCenter: React.FC<{
               </div>
 
               <h3 className="text-xl font-bold text-white mb-2">
-                {activeVideo.vietnameseTitle}
+                {tContent(`video.${activeVideo.id}.title`, activeVideo.vietnameseTitle)}
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
-                {activeVideo.description}
+                {tContent(`video.${activeVideo.id}.description`, activeVideo.description)}
               </p>
 
               {/* Key Takeaways */}
               <div className="bg-[#080c14] rounded-xl p-4 border border-slate-800/80 mb-5">
                 <div className="text-xs font-bold text-white mb-2 flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Điểm mấu chốt sau video này:</span>
+                  <span>{t('keyTakeaways')}</span>
                 </div>
                 <div className="space-y-1.5 text-xs text-slate-300">
                   {activeVideo.keyTakeaways.map((takeaway, idx) => (
                     <div key={idx} className="flex items-start gap-2">
                       <span className="text-emerald-400 font-bold">•</span>
-                      <span>{takeaway}</span>
+                      <span>{tContent(`video.${activeVideo.id}.takeaway.${idx}`, takeaway)}</span>
                     </div>
                   ))}
                 </div>
@@ -172,7 +174,7 @@ export const VideoTutorialCenter: React.FC<{
                   onClick={onOpenRegister}
                   className="px-5 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center gap-2 cursor-pointer"
                 >
-                  <span>Thực hành ngay với 100 Credits</span>
+                  <span>{t('practiceNow')}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -184,10 +186,10 @@ export const VideoTutorialCenter: React.FC<{
             <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
               <div className="flex items-center gap-2 text-xs font-bold text-white font-mono uppercase">
                 <ListOrdered className="w-4 h-4 text-emerald-400" />
-                <span>Danh Sách 5 Video Hướng Dẫn</span>
+                <span>{tContent('video.playlist')}</span>
               </div>
               <span className="text-[11px] text-slate-400 font-mono">
-                Tổng: ~20 phút
+                {tContent('video.total')}
               </span>
             </div>
 
@@ -224,7 +226,7 @@ export const VideoTutorialCenter: React.FC<{
                           isActive ? 'text-emerald-300' : 'text-white'
                         }`}
                       >
-                        {video.vietnameseTitle}
+                        {tContent(`video.${video.id}.title`, video.vietnameseTitle)}
                       </div>
                     </div>
                   </div>
@@ -235,12 +237,12 @@ export const VideoTutorialCenter: React.FC<{
             {/* Chapters breakdown of currently selected video */}
             <div className="mt-5 pt-4 border-t border-slate-800">
               <div className="text-xs font-bold text-slate-300 mb-2">
-                Các mốc thời gian (Chapters):
+                {tContent('video.chapters')}
               </div>
               <div className="space-y-1.5 text-[11px] font-mono">
                 {activeVideo.chapters.map((ch, i) => (
                   <div key={i} className="flex items-center justify-between p-1.5 rounded hover:bg-slate-800/60 text-slate-400 hover:text-white transition-colors">
-                    <span className="truncate">{ch.title}</span>
+                    <span className="truncate">{tContent(`video.${activeVideo.id}.chapter.${i}`, ch.title)}</span>
                     <span className="text-emerald-400 shrink-0 ml-2">{ch.time}</span>
                   </div>
                 ))}

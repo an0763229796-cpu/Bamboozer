@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { TARGET_AUDIENCES } from '../data/content';
 import { Zap, ShieldCheck, BookOpen, Check, ArrowRight, UserCheck } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 export const AudienceSection: React.FC<{ onOpenRegister: () => void }> = ({ onOpenRegister }) => {
+  const { t, tContent } = useLanguage();
   const [selectedAudience, setSelectedAudience] = useState<string>('parttime');
 
   const icons = {
@@ -17,13 +19,13 @@ export const AudienceSection: React.FC<{ onOpenRegister: () => void }> = ({ onOp
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 mb-3">
             <UserCheck className="w-3.5 h-3.5" />
-            <span>Được Thiết Kế Cho Mọi Cấp Độ Nhà Đầu Tư</span>
+            <span>{t('audienceBadge')}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-            Bạn Thuộc Nhóm Nhà Giao Dịch Nào?
+            {t('audienceTitle')}
           </h2>
           <p className="text-slate-300 text-sm sm:text-base">
-            Dù bạn là trader toàn thời gian cần tốc độ nano-giây hay người mới bắt đầu muốn tích lũy an toàn, Bamboozer luôn có bộ công cụ tối ưu cho bạn.
+            {t('audienceDescription')}
           </p>
         </div>
 
@@ -46,15 +48,15 @@ export const AudienceSection: React.FC<{ onOpenRegister: () => void }> = ({ onOp
                       {icons[aud.id as keyof typeof icons]}
                     </div>
                     <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                      {aud.badge}
+                      {tContent(`audience.${aud.id}.badge`, aud.badge)}
                     </span>
                   </div>
 
                   <h3 className="text-xl font-bold text-white mb-1.5">
-                    {aud.role}
+                    {tContent(`audience.${aud.id}.role`, aud.role)}
                   </h3>
                   <p className="text-xs font-semibold text-emerald-400 mb-5">
-                    {aud.tagline}
+                    {tContent(`audience.${aud.id}.tagline`, aud.tagline)}
                   </p>
 
                   <ul className="space-y-3 mb-6">
@@ -63,7 +65,7 @@ export const AudienceSection: React.FC<{ onOpenRegister: () => void }> = ({ onOp
                         <div className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
                           <Check className="w-3 h-3" />
                         </div>
-                        <span className="leading-snug">{feat}</span>
+                        <span className="leading-snug">{tContent(`audience.${aud.id}.feature.${idx}`, feat)}</span>
                       </li>
                     ))}
                   </ul>
@@ -80,7 +82,7 @@ export const AudienceSection: React.FC<{ onOpenRegister: () => void }> = ({ onOp
                       : 'bg-slate-800 text-slate-200 hover:bg-slate-700'
                   }`}
                 >
-                  <span>Bắt đầu với vai trò {aud.role.split(' ')[0]}</span>
+                  <span>{t('startAs')} {tContent(`audience.${aud.id}.role`, aud.role).split(' ')[0]}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

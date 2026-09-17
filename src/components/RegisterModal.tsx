@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Sparkles, CheckCircle2, Coins, ArrowRight, ShieldCheck, Lock } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 interface RegisterModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ export const RegisterModal: React.FC<RegisterModalProps> = ({
   onClose,
   onSuccessClaim
 }) => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState('');
   const [refCode, setRefCode] = useState('BAMBOO_QUANT888');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -119,10 +121,10 @@ export const RegisterModal: React.FC<RegisterModalProps> = ({
                 className="w-full py-3 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20 disabled:opacity-60"
               >
                 {isSubmitting ? (
-                  <span>Đang khởi tạo tài khoản...</span>
+                  <span>{t('registerLoading')}</span>
                 ) : (
                   <>
-                    <span>Đăng ký &amp; Nhận 100 Credits Free</span>
+                    <span>{t('registerCta')}</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}

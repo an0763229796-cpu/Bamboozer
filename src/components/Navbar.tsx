@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLanguage, Language } from '../i18n';
 import { 
   Play, 
   Coins, 
@@ -25,14 +26,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   userCredits
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   // Streamlined concise navigation labels that never crowd the bar
   const navLinks = [
-    { name: 'Bảo Mật', href: '#pillars' },
-    { name: 'Tính Năng', href: '#modules' },
-    { name: 'Sàn Giao Dịch', href: '#integrations' },
-    { name: 'Bảng Giá', href: '#pricing' },
-    { name: 'FAQ', href: '#faq' },
+    { name: t('security'), href: '#pillars' },
+    { name: t('features'), href: '#modules' },
+    { name: t('exchanges'), href: '#integrations' },
+    { name: t('pricing'), href: '#pricing' },
+    { name: t('faq'), href: '#faq' },
   ];
 
   return (
@@ -87,6 +89,17 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <label className="sr-only" htmlFor="language-switcher">Language</label>
+            <select
+              id="language-switcher"
+              value={language}
+              onChange={(event) => setLanguage(event.target.value as Language)}
+              className="h-8 rounded-lg border border-slate-700 bg-slate-900/90 px-1.5 text-[11px] font-bold text-slate-300 outline-none focus:border-emerald-400 cursor-pointer"
+              aria-label="Select language"
+            >
+              <option value="vi">VI</option>
+              <option value="zh">中文</option>
+            </select>
             {/* Free Credits Wallet Badge */}
             <div 
               onClick={onOpenRegister}
@@ -94,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Ví Credits của bạn - Bấm để nhận thêm"
             >
               <Coins className="w-3.5 h-3.5 text-emerald-400 animate-pulse shrink-0" />
-              <span className="hidden sm:inline">Ví:</span>
+              <span className="hidden sm:inline">{t('wallet')}</span>
               <span className="font-mono font-bold text-emerald-300">{userCredits}</span>
               <span className="text-[10px] text-emerald-400/90 uppercase font-mono">CR</span>
             </div>
@@ -107,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Gửi email liên hệ trực tiếp"
             >
               <Mail className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-              <span>Liên Hệ</span>
+              <span>{t('contact')}</span>
             </button>
 
             {/* Referral Link Trigger (visible on xl+) */}
@@ -118,7 +131,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Chia sẻ link giới thiệu nhận 100 credits"
             >
               <Gift className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-              <span>Giới Thiệu</span>
+              <span>{t('referral')}</span>
               <span className="bg-cyan-400/20 text-cyan-300 text-[10px] px-1 rounded font-mono font-bold">+100</span>
             </button>
 
@@ -130,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 hover:from-emerald-300 hover:to-cyan-200 shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all active:scale-95 cursor-pointer shrink-0 whitespace-nowrap"
             >
-              <span>Đăng Ký</span>
+              <span>{t('register')}</span>
               <ArrowRight className="w-3.5 h-3.5 shrink-0" />
             </a>
 
@@ -170,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all cursor-pointer whitespace-nowrap"
               >
                 <Gift className="w-4 h-4 text-cyan-400" />
-                <span>Link Giới Thiệu (+100 Credits / Bạn bè)</span>
+                <span>{t('referral')} (+100 Credits)</span>
               </button>
 
               <button
@@ -181,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-slate-800/90 text-slate-200 border border-slate-700 hover:bg-slate-700 transition-all cursor-pointer whitespace-nowrap"
               >
                 <Mail className="w-4 h-4 text-cyan-400" />
-                <span>Liên Hệ Trực Tiếp (Gửi Email)</span>
+                <span>{t('directContact')}</span>
               </button>
 
               <button
@@ -192,7 +205,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-all cursor-pointer whitespace-nowrap"
               >
                 <Play className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400" />
-                <span>Xem Video Demo 3 Phút</span>
+                <span>{t('videoDemo')}</span>
               </button>
 
               <button
@@ -202,7 +215,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 hover:from-emerald-300 transition-all shadow-md shadow-emerald-500/20 cursor-pointer whitespace-nowrap"
               >
-                <span>Bắt đầu ngay • Nhận 100 Credits Free</span>
+                <span>{t('startNow')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

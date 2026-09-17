@@ -18,10 +18,12 @@ import { DemoVideoModal } from './components/DemoVideoModal';
 import { ContactModal } from './components/ContactModal';
 import { ThreeQuantFabric } from './components/ThreeQuantFabric';
 import { Sparkles, Coins, Check, Gift, Mail, X } from 'lucide-react';
+import { useLanguage } from './i18n';
 
 export const BAMBOOZER_REGISTER_URL = 'https://www.bamboozer.com/register?ref=81';
 
 export default function App() {
+  const { t } = useLanguage();
   const [userCredits, setUserCredits] = useState<number>(100);
   const [quickGuideModuleId, setQuickGuideModuleId] = useState<string | null>(null);
   const [isReferralOpen, setIsReferralOpen] = useState<boolean>(false);
@@ -76,14 +78,14 @@ export default function App() {
             <div className="max-w-7xl mx-auto flex items-center justify-center gap-1.5 sm:gap-2 pr-7">
               <span className="inline-flex items-center gap-1 text-cyan-400 font-bold whitespace-nowrap">
                 <Gift className="w-3.5 h-3.5 shrink-0" />
-                <span>Chương trình Referral:</span>
+                <span>{t('referralBanner')}</span>
               </span>
-              <span className="text-slate-300 truncate">Nhận ngay 100 Credits khi giới thiệu bạn bè tham gia Bamboozer.</span>
+              <span className="text-slate-300 truncate">{t('referralBannerText')}</span>
               <button
                 onClick={() => setIsReferralOpen(true)}
                 className="text-cyan-300 hover:text-cyan-200 font-bold underline ml-1 cursor-pointer whitespace-nowrap shrink-0"
               >
-                Lấy link &rarr;
+                {t('getLink')}
               </button>
             </div>
             <button

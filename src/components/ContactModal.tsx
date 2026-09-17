@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLanguage } from '../i18n';
 import { 
   X, 
   Mail, 
@@ -25,6 +26,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   onClose,
   targetEmail = 'an0763229796@gmail.com'
 }) => {
+  const { t, tContent } = useLanguage();
   const [name, setName] = useState('');
   const [senderEmail, setSenderEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -114,11 +116,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             <Mail className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-white tracking-tight">
-              Liên Hệ Trực Tiếp Với Tôi
+              <h3 className="text-lg font-bold text-white tracking-tight">
+              {t('contactTitle')}
             </h3>
             <p className="text-xs text-slate-400">
-              Gửi email thắc mắc, tư vấn thuật toán hoặc hợp tác kỹ thuật
+              {t('contactSubtitle')}
             </p>
           </div>
         </div>
@@ -132,10 +134,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
             <div>
               <h4 className="text-base font-bold text-white mb-1">
-                Ứng dụng email đã được kích hoạt!
+                {t('emailActivated')}
               </h4>
               <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
-                Email của bạn đã được gửi thành công đến đội ngũ Bamboozer. Bạn có thể bấm nút bên dưới để sao chép nội dung hoặc gửi tin nhắn khác.
+                {t('emailSent')} Bạn có thể bấm nút bên dưới để sao chép nội dung hoặc gửi tin nhắn khác.
               </p>
             </div>
 
@@ -149,12 +151,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 {copiedContent ? (
                   <>
                     <Check className="w-4 h-4 text-emerald-400" />
-                    <span className="text-emerald-400 font-bold">Đã sao chép tin nhắn</span>
+                    <span className="text-emerald-400 font-bold">{t('copied')}</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-4 h-4 text-slate-300" />
-                    <span>Sao chép nội dung thư</span>
+                    <span>{t('copyEmail')}</span>
                   </>
                 )}
               </button>
@@ -165,7 +167,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <Send className="w-4 h-4" />
-                <span>Gửi tin nhắn khác</span>
+                <span>{t('sendAnother')}</span>
               </button>
             </div>
 
@@ -175,7 +177,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 onClick={handleReset}
                 className="text-xs text-slate-400 hover:text-slate-200 underline cursor-pointer"
               >
-                Soạn tin nhắn khác
+                {t('writeAnother')}
               </button>
             </div>
           </div>
@@ -194,7 +196,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1">
                   <User className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Họ và tên *</span>
+                  <span>{t('fullName')}</span>
                 </label>
                 <input
                   type="text"
@@ -209,7 +211,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1">
                   <Mail className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Email của bạn *</span>
+                  <span>{t('yourEmail')}</span>
                 </label>
                 <input
                   type="email"
@@ -227,7 +229,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1">
                   <Phone className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>SĐT hoặc Telegram (Tùy chọn)</span>
+                  <span>{t('phoneTelegram')}</span>
                 </label>
                 <input
                   type="text"
@@ -241,19 +243,19 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1">
                   <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Chủ đề hỗ trợ</span>
+                  <span>{t('supportTopic')}</span>
                 </label>
                 <select
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
                   className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all cursor-pointer"
                 >
-                  <option value="Tư vấn bot & thuật toán AI">Tư vấn bot &amp; thuật toán AI</option>
-                  <option value="Hỗ trợ kết nối API sàn">Hỗ trợ kết nối API sàn giao dịch</option>
-                  <option value="Đăng ký tài khoản VIP / Doanh nghiệp">Đăng ký tài khoản VIP / Doanh nghiệp</option>
-                  <option value="Tích hợp chỉ báo Pine Script">Tích hợp chỉ báo Pine Script</option>
-                  <option value="Hợp tác kinh doanh / Affiliate">Hợp tác kinh doanh / Affiliate</option>
-                  <option value="Vấn đề khác">Vấn đề kỹ thuật khác</option>
+                  <option value="Tư vấn bot & thuật toán AI">{tContent('contact.topic.0', 'AI bot & algorithm consulting')}</option>
+                  <option value="Hỗ trợ kết nối API sàn">{tContent('contact.topic.1', 'Exchange API connection support')}</option>
+                  <option value="Đăng ký tài khoản VIP / Doanh nghiệp">{tContent('contact.topic.2', 'VIP / Business registration')}</option>
+                  <option value="Tích hợp chỉ báo Pine Script">{tContent('contact.topic.3', 'Pine Script indicator integration')}</option>
+                  <option value="Hợp tác kinh doanh / Affiliate">{tContent('contact.topic.4', 'Business / Affiliate partnership')}</option>
+                  <option value="Vấn đề khác">{tContent('contact.topic.5', 'Other technical issue')}</option>
                 </select>
               </div>
             </div>
@@ -262,7 +264,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1">
                 <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Nội dung tin nhắn *</span>
+                <span>{t('messageLabel')}</span>
               </label>
               <textarea
                 required

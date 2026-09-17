@@ -2,6 +2,23 @@ import React from 'react';
 import { CRYPTO_EXCHANGES, BROKERS_AND_PLATFORMS } from '../data/content';
 import { ShieldCheck, CheckCircle2, Lock, ArrowUpRight, KeyRound } from 'lucide-react';
 import { useLanguage } from '../i18n';
+import bitfinexLogo from '../assets/images/Bitfinex.jpg';
+import bitgetLogo from '../assets/images/bitget.jpg';
+import bybitLogo from '../assets/images/bybit.webp';
+import deepcoinLogo from '../assets/images/Gate.io.png';
+import gateLogo from '../assets/images/Deepcoin.png';
+import htxLogo from '../assets/images/HTX.jpg';
+import krakenLogo from '../assets/images/Kraken-Logo.png';
+
+const localExchangeLogos: Record<string, string> = {
+  Bitget: bitgetLogo,
+  Bybit: bybitLogo,
+  Bitfinex: bitfinexLogo,
+  Deepcoin: deepcoinLogo,
+  'Gate.io': gateLogo,
+  HTX: htxLogo,
+  Kraken: krakenLogo,
+};
 
 export const IntegrationsSection: React.FC<{ onOpenQuickGuide: (id: string) => void }> = ({ onOpenQuickGuide }) => {
   const { t, tContent } = useLanguage();
@@ -48,7 +65,7 @@ export const IntegrationsSection: React.FC<{ onOpenQuickGuide: (id: string) => v
                   <div className="flex items-center justify-between mb-2">
                     <div className="w-9 h-9 rounded-lg bg-slate-950/80 border border-slate-700/80 flex items-center justify-center overflow-hidden">
                       <img
-                        src={exch.logoUrl}
+                        src={localExchangeLogos[exch.name] || exch.logoUrl}
                         alt={`${exch.name} logo`}
                         className="w-6 h-6 object-contain"
                         loading="lazy"

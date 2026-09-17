@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage, Language } from '../i18n';
+import bamboozerLogo from '../assets/images/bamboozer_logo_1789533475589.jpg';
 import { 
   Play, 
   Coins, 
@@ -42,17 +43,17 @@ export const Navbar: React.FC<NavbarProps> = ({
       id="main-navbar"
       className="bg-[#080c14]/95 backdrop-blur-md border-b border-slate-800/80"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-3 sm:gap-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 overflow-x-hidden">
+        <div className="flex items-center justify-between h-16 gap-2 sm:gap-6 min-w-0">
           {/* Brand Logo */}
           <a 
             href="#" 
-            className="flex items-center gap-2.5 sm:gap-3 shrink-0 group select-none" 
+            className="flex items-center gap-2 sm:gap-3 min-w-0 shrink group select-none" 
             id="brand-logo-link"
           >
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-emerald-500/30 shadow-md shadow-emerald-500/20 group-hover:border-emerald-400/60 group-hover:shadow-emerald-500/40 transition-all shrink-0 bg-[#0d131f]">
               <img
-                src="/logo.jpg"
+                src={bamboozerLogo}
                 alt="Bamboozer Logo"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
@@ -116,7 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="btn-contact-nav"
               onClick={onOpenContact}
-              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/90 text-slate-300 hover:text-white border border-slate-700 hover:border-slate-600 transition-all cursor-pointer shrink-0 whitespace-nowrap"
+              className="hidden lg:inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/90 text-slate-300 hover:text-white border border-slate-700 hover:border-slate-600 transition-all cursor-pointer shrink-0 whitespace-nowrap"
               title="Gửi email liên hệ trực tiếp"
             >
               <Mail className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
@@ -141,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="https://www.bamboozer.com/register?ref=81"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 hover:from-emerald-300 hover:to-cyan-200 shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all active:scale-95 cursor-pointer shrink-0 whitespace-nowrap"
+              className="hidden lg:inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 hover:from-emerald-300 hover:to-cyan-200 shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all active:scale-95 cursor-pointer shrink-0 whitespace-nowrap"
             >
               <span>{t('register')}</span>
               <ArrowRight className="w-3.5 h-3.5 shrink-0" />

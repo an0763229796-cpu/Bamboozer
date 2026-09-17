@@ -2,6 +2,7 @@ import React from 'react';
 import { COMPANY_INFO } from '../data/content';
 import { ShieldCheck, Mail, Globe, AlertOctagon, Heart } from 'lucide-react';
 import { useLanguage } from '../i18n';
+import bamboozerLogo from '../assets/images/bamboozer_logo_1789533475589.jpg';
 
 export const Footer: React.FC<{ 
   onOpenRegister: () => void; 
@@ -22,7 +23,7 @@ export const Footer: React.FC<{
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-lg overflow-hidden border border-emerald-500/30 bg-[#0d131f] shrink-0">
                 <img
-                  src="/logo.jpg"
+                  src={bamboozerLogo}
                   alt="Bamboozer Logo"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"

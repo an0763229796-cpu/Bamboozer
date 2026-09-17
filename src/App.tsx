@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ValuePillars } from './components/ValuePillars';
@@ -193,6 +194,7 @@ export default function App() {
         targetEmail="an0763229796@gmail.com"
       />
       </div>
+      <Analytics />
     </div>
   );
 }

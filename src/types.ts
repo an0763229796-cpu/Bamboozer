@@ -96,3 +96,129 @@ export interface MarketSignalItem {
   timestamp: string;
   volume24h: string;
 }
+
+// ==========================================
+// CAMPAIGN & TRADING SPRINT CHALLENGE TYPES
+// ==========================================
+
+export type ParticipantStatus = 'Active' | 'Disqualified' | 'Warning' | 'Winner';
+
+export interface EquityPoint {
+  day: string;
+  timestamp: string;
+  equity: number;
+  pnl: number;
+  roi: number;
+}
+
+export interface TradeHistory {
+  id: string;
+  participantId: string;
+  symbol: string;
+  side: 'LONG' | 'SHORT';
+  leverage: number;
+  entryPrice: number;
+  closePrice: number;
+  pnl: number;
+  pnlPercent: number;
+  openedAt: string;
+  closedAt: string;
+  status: 'OPEN' | 'CLOSED';
+}
+
+export interface Participant {
+  id: string;
+  rank: number;
+  username: string;
+  fullName?: string;
+  avatar?: string;
+  country: string;
+  countryFlag: string;
+  initialBalance: number;
+  currentBalance: number;
+  pnl: number;
+  roi: number; // in percentage e.g. +142.8%
+  maxDrawdown: number; // in percentage e.g. 4.2%
+  winRate: number; // in percentage e.g. 74%
+  tradesCount: number;
+  status: ParticipantStatus;
+  disqualifiedReason?: string;
+  badge?: 'Top 1' | 'Top 2' | 'Top 3' | 'VIP' | 'Risk Master' | 'Sniper' | 'Rising Star';
+  equityCurve: EquityPoint[];
+  trades: TradeHistory[];
+  registeredAt: string;
+  kolRef?: string;
+}
+
+export interface ChallengeSeason {
+  id: string;
+  name: string;
+  seasonNumber: number;
+  totalPrizeUsdt: number; // $1,140
+  cashPrizeUsdt: number; // $210
+  proSubscriptionUsdt: number; // $930
+  startDate: string;
+  endDate: string;
+  status: 'live' | 'upcoming' | 'completed';
+  totalParticipants: number;
+  activeParticipants: number;
+  rules: {
+    minTrades: number;
+    maxDrawdownPercent: number; // 10%
+    leverageLimit: number;
+    eligiblePairs: string[];
+    disqualificationRule: string;
+  };
+  prizes: {
+    rank: string;
+    title: string;
+    cashUsdt: number;
+    proValueUsdt: number;
+    proMonths: string;
+    totalValueUsdt: number;
+    icon: string;
+  }[];
+}
+
+export interface CampaignSummary {
+  id: string;
+  slug: string;
+  title: string;
+  shortTitle: string;
+  subtitle: string;
+  status: 'ACTIVE' | 'UPCOMING' | 'COMPLETED';
+  type: 'TRADING_SPRINT' | 'AI_BOT_LEAGUE' | 'QUANT_HACKATHON' | 'COMMUNITY_AIRDROP';
+  prizePoolFormatted: string;
+  prizePoolUsdt: number;
+  startDate: string;
+  endDate: string;
+  participantsCount: number;
+  category: string;
+  bannerGradient: string;
+  featured?: boolean;
+  affiliateRef: string;
+  badgeText: string;
+}
+
+export interface TelemetryClickEvent {
+  id: string;
+  timestamp: string;
+  refCode: string;
+  targetUrl: string;
+  sourceComponent: string;
+  actionType: 'click_affiliate' | 'modal_submit' | 'challenge_join' | 'view_leaderboard' | 'export_data';
+  userAgent?: string;
+  metadata?: Record<string, any>;
+}
+
+export interface KOLPartner {
+  id: string;
+  code: string;
+  name: string;
+  channel: string;
+  clicksCount: number;
+  signupsCount: number;
+  activeTraders: number;
+  conversionRate: number;
+}
+

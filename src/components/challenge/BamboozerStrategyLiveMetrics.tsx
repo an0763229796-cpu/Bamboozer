@@ -35,6 +35,7 @@ import {
   PieChart,
   Pie
 } from 'recharts';
+import { tradingWs } from '../../services/tradingWsService';
 
 export interface StrategyLiveMetricsProps {
   onOpenConnectApi?: () => void;
@@ -45,11 +46,37 @@ export const BamboozerStrategyLiveMetrics: React.FC<StrategyLiveMetricsProps> = 
   const [dataMode, setDataMode] = useState<'clean' | 'active'>('active');
   const [activeTab, setActiveTab] = useState<'drawdown' | 'calendar' | 'hourly' | 'allocation' | 'ranking'>('drawdown');
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [lastSynced, setLastSynced] = useState<string>('Vừa xong');
+  const [lastSynced, setLastSynced] = useState<string>(() => new Date().toLocaleTimeString());
   const [showApiModal, setShowApiModal] = useState(false);
   const [apiKey, setApiKey] = useState('');
   const [apiConnected, setApiConnected] = useState(false);
   const [copiedEndpoint, setCopiedEndpoint] = useState(false);
+
+  // Dynamic live metrics state connected to real trading ticks
+  const [liveDelta, setLiveDelta] = useState({
+    equityDelta: 0,
+    tradeCount: 0,
+    wins: 0,
+    losses: 0,
+    lastTickDir: 'UP' as 'UP' | 'DOWN',
+  });
+
+  useEffect(() => {
+    const unsub = tradingWs.subscribeTradeExecutions((trade) => {
+      setLiveDelta((prev) => {
+        const isWin = trade.pnl >= 0;
+        return {
+          equityDelta: +(prev.equityDelta + trade.pnl * 0.15).toFixed(2),
+          tradeCount: prev.tradeCount + 1,
+          wins: prev.wins + (isWin ? 1 : 0),
+          losses: prev.losses + (!isWin ? 1 : 0),
+          lastTickDir: isWin ? 'UP' : 'DOWN',
+        };
+      });
+      setLastSynced(trade.timestamp);
+    });
+    return unsub;
+  }, []);
 
   // Sync animation
   const handleRefresh = () => {
@@ -66,39 +93,37 @@ export const BamboozerStrategyLiveMetrics: React.FC<StrategyLiveMetricsProps> = 
     setTimeout(() => setCopiedEndpoint(false), 2000);
   };
 
-  // Metrics Data Definition
-  const metrics = dataMode === 'clean' ? {
-    totalEquity: '$1,000.00',
-    totalPnl: '+$0.00',
-    totalPnlPct: '0.00%',
-    pnlPositive: true,
-    winRate: '0.0%',
-    winLossDetail: '0W / 0L',
-    profitFactor: '0.00 : 1',
-    avgProfit: '$0.00',
-    maxDrawdown: '0.0%',
-    maxDrawdownUsdt: '$0.00',
-    drawdownStatus: 'Chưa có lệnh',
-    totalTrades: '0',
-    avgDailyTrades: 'Avg Daily 0.0',
-    runningStrategies: '0 Bot',
-    indicatorDetail: '0 Indicator',
-  } : {
-    totalEquity: '$1,284.50',
-    totalPnl: '+$284.50',
-    totalPnlPct: '+28.45%',
-    pnlPositive: true,
-    winRate: '68.8%',
-    winLossDetail: '44W / 20L',
-    profitFactor: '2.34 : 1',
-    avgProfit: 'Avg Profit $38.20',
-    maxDrawdown: '3.4%',
-    maxDrawdownUsdt: '$34.00',
-    drawdownStatus: 'An Toàn (<10%)',
-    totalTrades: '64',
-    avgDailyTrades: 'Avg Daily 9.1',
-    runningStrategies: '3 Bot Active',
-    indicatorDetail: '6 Indicator Live',
+  // Metrics Data Definition with Live Reactive Values
+  const currentEquity = dataMode === 'clean'
+    ? 1000 + (apiConnected ? liveDelta.equityDelta : 0)
+    : 1284.50 + liveDelta.equityDelta;
+
+  const currentPnl = currentEquity - 1000;
+  const currentPnlPct = ((currentPnl / 1000) * 100).toFixed(2);
+  const totalTradesCount = dataMode === 'clean'
+    ? (apiConnected ? liveDelta.tradeCount : 0)
+    : 64 + liveDelta.tradeCount;
+
+  const totalWins = dataMode === 'clean' ? (apiConnected ? liveDelta.wins : 0) : 44 + liveDelta.wins;
+  const totalLosses = dataMode === 'clean' ? (apiConnected ? liveDelta.losses : 0) : 20 + liveDelta.losses;
+  const currentWinRate = totalTradesCount > 0 ? ((totalWins / totalTradesCount) * 100).toFixed(1) + '%' : '0.0%';
+
+  const metrics = {
+    totalEquity: `$${currentEquity.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+    totalPnl: `${currentPnl >= 0 ? '+' : ''}$${currentPnl.toFixed(2)}`,
+    totalPnlPct: `${currentPnl >= 0 ? '+' : ''}${currentPnlPct}%`,
+    pnlPositive: currentPnl >= 0,
+    winRate: currentWinRate,
+    winLossDetail: `${totalWins}W / ${totalLosses}L`,
+    profitFactor: currentPnl > 0 ? (2.34 + +(liveDelta.equityDelta / 1000).toFixed(2)).toFixed(2) + ' : 1' : '0.00 : 1',
+    avgProfit: totalTradesCount > 0 ? `$${Math.abs(currentPnl / totalTradesCount).toFixed(2)}` : '$0.00',
+    maxDrawdown: dataMode === 'clean' ? '0.0%' : '3.4%',
+    maxDrawdownUsdt: dataMode === 'clean' ? '$0.00' : '$34.00',
+    drawdownStatus: dataMode === 'clean' ? 'Chưa có lệnh' : 'An Toàn (<10%)',
+    totalTrades: totalTradesCount.toString(),
+    avgDailyTrades: `Avg Daily ${(totalTradesCount / 7).toFixed(1)}`,
+    runningStrategies: dataMode === 'clean' ? '0 Bot' : '3 Bot Active',
+    indicatorDetail: dataMode === 'clean' ? '0 Indicator' : '6 Indicator Live',
   };
 
   // Drawdown & Equity Curve Data

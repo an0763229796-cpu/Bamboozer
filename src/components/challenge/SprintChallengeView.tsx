@@ -12,8 +12,7 @@ import { EducationCommunity } from './EducationCommunity';
 import { RulesAndFaqSection } from './RulesAndFaqSection';
 import { FinalCtaSection } from './FinalCtaSection';
 import { TraderDetailModal } from './TraderDetailModal';
-import { ArrowLeft, Trophy, Sparkles, Link as LinkIcon, Copy, Check } from 'lucide-react';
-import { getAbsoluteCampaignUrl } from '../../utils/urlRouter';
+import { ArrowLeft, Trophy, Sparkles } from 'lucide-react';
 import { useCampaignI18n, CampaignLanguageSwitcher } from '../../i18n/campaignI18n';
 
 interface SprintChallengeViewProps {
@@ -29,14 +28,6 @@ export const SprintChallengeView: React.FC<SprintChallengeViewProps> = ({
 }) => {
   const { t } = useCampaignI18n();
   const [selectedTrader, setSelectedTrader] = useState<Participant | null>(null);
-  const [copiedUrl, setCopiedUrl] = useState(false);
-
-  const handleCopyUrl = () => {
-    const fullUrl = getAbsoluteCampaignUrl('bamboozer-7day-sprint');
-    navigator.clipboard.writeText(fullUrl);
-    setCopiedUrl(true);
-    setTimeout(() => setCopiedUrl(false), 2200);
-  };
 
   const scrollToLeaderboard = () => {
     const el = document.getElementById('leaderboard-section');
@@ -74,32 +65,6 @@ export const SprintChallengeView: React.FC<SprintChallengeViewProps> = ({
             {/* Quick Language Toggle */}
             <CampaignLanguageSwitcher />
           </div>
-        </div>
-      </div>
-
-      {/* Campaign Canonical Route & Share Bar */}
-      <div className="bg-[#080d16] border-b border-slate-800/80 px-4 py-2">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="flex items-center gap-1.5 text-slate-400">
-              <LinkIcon className="w-3.5 h-3.5 text-emerald-400" />
-              <span>{t.campaignUrlLabel}</span>
-            </span>
-            <code className="px-2.5 py-0.5 rounded-md bg-[#04070e] text-emerald-400 border border-emerald-500/30 font-bold">
-              /campaign/bamboozer-7day-sprint
-            </code>
-            <span className="text-[10px] text-slate-500 hidden md:inline">
-              (Canonical: bamboozer-7day-sprint)
-            </span>
-          </div>
-
-          <button
-            onClick={handleCopyUrl}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold transition-all cursor-pointer self-start sm:self-auto shadow-sm"
-          >
-            {copiedUrl ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copiedUrl ? t.copiedLink : t.copyShareLink}</span>
-          </button>
         </div>
       </div>
 

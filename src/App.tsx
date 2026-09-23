@@ -19,7 +19,6 @@ import { ContactModal } from './components/ContactModal';
 import { ThreeQuantFabric } from './components/ThreeQuantFabric';
 import { CampaignsHubView } from './components/campaigns/CampaignsHubView';
 import { SprintChallengeView } from './components/challenge/SprintChallengeView';
-import { TanStackLiveLeaderboard } from './components/challenge/TanStackLiveLeaderboard';
 import { ActiveCampaignModal } from './components/campaigns/ActiveCampaignModal';
 import { Sparkles, Coins, Check, Gift, Mail, X, Flame } from 'lucide-react';
 import { useLanguage } from './i18n';
@@ -223,36 +222,6 @@ export default function App() {
           onOpenQuickGuide={(id) => setQuickGuideModuleId(id)}
           onOpenRegister={handleOpenRegister}
         />
-
-        {/* Real-time Live Leaderboard & Tournament Standing */}
-        <section id="leaderboard" className="py-16 md:py-24 border-y border-slate-800/80 bg-[#070b12]/90 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 mb-3">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span>GIẢI ĐẤU MÙA 04 • BẢNG XẾP HẠNG THỜI GIAN THỰC</span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-                  Bảng Xếp Hạng &amp; Vị Thế Trực Tiếp
-                </h2>
-                <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-                  Theo dõi thứ hạng, tỷ lệ ROI và PnL tài khoản của bạn được cập nhật trực tiếp theo thời gian thực qua luồng WebSocket tốc độ cao.
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setCurrentView('sprint_challenge')}
-                  className="px-4 py-2 rounded-xl bg-cyan-500/15 text-cyan-300 hover:bg-cyan-500/25 border border-cyan-500/40 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5"
-                >
-                  <span>Xem Chi Tiết Mùa 04 ($1,140)</span>
-                  <span>→</span>
-                </button>
-              </div>
-            </div>
-            <TanStackLiveLeaderboard onOpenRegister={handleOpenRegister} />
-          </div>
-        </section>
 
         {/* 6. Step-by-Step Onboarding */}
         <OnboardingSteps onOpenRegister={handleOpenRegister} />

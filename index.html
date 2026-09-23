@@ -15,40 +15,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
-      /* 1. Suppress third-party Tawk.to telemetry error reports from triggering application test alerts */
+      /* Ensure window.fetch has a setter so sandboxed iframe environments or polyfills do not throw:
+         "Cannot set property fetch of #<Window> which has only a getter" */
       (function() {
-        try {
-          var origConsoleError = console.error;
-          console.error = function() {
-            var args = Array.prototype.slice.call(arguments);
-            var msg = '';
-            for (var i = 0; i < args.length; i++) {
-              var item = args[i];
-              msg += ' ' + (item && typeof item === 'object' ? (item.message || JSON.stringify(item)) : String(item));
-            }
-            if (msg.indexOf('Tawk/Logger') !== -1 || msg.indexOf('[Tawk/Logger]') !== -1 || msg.indexOf('Error report sent') !== -1) {
-              return; // Silently swallow 3rd-party widget logger notice
-            }
-            return origConsoleError.apply(console, args);
-          };
-
-          var origConsoleWarn = console.warn;
-          console.warn = function() {
-            var args = Array.prototype.slice.call(arguments);
-            var msg = '';
-            for (var i = 0; i < args.length; i++) {
-              var item = args[i];
-              msg += ' ' + (item && typeof item === 'object' ? (item.message || JSON.stringify(item)) : String(item));
-            }
-            if (msg.indexOf('Tawk/Logger') !== -1 || msg.indexOf('[Tawk/Logger]') !== -1) {
-              return;
-            }
-            return origConsoleWarn.apply(console, args);
-          };
-        } catch (_) {}
-
-        /* 2. Ensure window.fetch has a setter so sandboxed iframe environments or third-party polyfills (e.g. Tawk.to) do not throw:
-           "Cannot set property fetch of #<Window> which has only a getter" */
         try {
           var targetObj = window;
           var desc = Object.getOwnPropertyDescriptor(targetObj, 'fetch');
@@ -71,7 +40,7 @@
           }
         } catch (_) {}
 
-        /* 3. Global error handler suppressing cross-origin / third-party iframe errors */
+        /* Global error handler suppressing cross-origin / third-party iframe errors */
         window.addEventListener('error', function(event) {
           if (!event) return;
           var msg = (event.message || '') + '';
@@ -104,26 +73,5 @@
   <body class="bg-[#0b0f17] text-slate-100 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-emerald-500/30 selection:text-emerald-200 antialiased overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Start of Tawk.to Script -->
-    <script type="text/javascript">
-      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-      (function () {
-        try {
-          var script = document.createElement('script');
-          var firstScript = document.getElementsByTagName('script')[0];
-          if (!firstScript) return;
-          script.async = true;
-          script.src = 'https://embed.tawk.to/6aaa4b1b34861b344aabbab1/1k2kjapnh';
-          script.charset = 'UTF-8';
-          script.setAttribute('crossorigin', '*');
-          script.onerror = function() {
-            // Silently swallow network / CDN errors in sandboxed environments
-          };
-          firstScript.parentNode.insertBefore(script, firstScript);
-        } catch (_) {}
-      })();
-    </script>
-    <!-- End of Tawk.to Script -->
   </body>
 </html>
-

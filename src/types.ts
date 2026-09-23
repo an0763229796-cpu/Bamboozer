@@ -184,8 +184,11 @@ export interface CampaignSummary {
   id: string;
   slug: string;
   title: string;
+  titleEn?: string;
   shortTitle: string;
+  shortTitleEn?: string;
   subtitle: string;
+  subtitleEn?: string;
   status: 'ACTIVE' | 'UPCOMING' | 'COMPLETED';
   type: 'TRADING_SPRINT' | 'AI_BOT_LEAGUE' | 'QUANT_HACKATHON' | 'COMMUNITY_AIRDROP';
   prizePoolFormatted: string;
@@ -194,10 +197,12 @@ export interface CampaignSummary {
   endDate: string;
   participantsCount: number;
   category: string;
+  categoryEn?: string;
   bannerGradient: string;
   featured?: boolean;
   affiliateRef: string;
   badgeText: string;
+  badgeTextEn?: string;
 }
 
 export interface TelemetryClickEvent {

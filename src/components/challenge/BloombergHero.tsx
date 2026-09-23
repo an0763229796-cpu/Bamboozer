@@ -4,6 +4,7 @@ import { Trophy, Timer, ArrowRight, ShieldCheck, Flame, ExternalLink, Activity, 
 import { trackAndOpenAffiliate } from '../../services/telemetryDb';
 import { CURRENT_SEASON } from '../../data/mockData';
 import { useSeasonCountdown } from '../../utils/seasonCountdown';
+import { useCampaignI18n } from '../../i18n/campaignI18n';
 
 interface BloombergHeroProps {
   onJoinClick: () => void;
@@ -11,6 +12,8 @@ interface BloombergHeroProps {
 }
 
 export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onViewLeaderboard }) => {
+  const { t, language } = useCampaignI18n();
+  const isEn = language === 'en';
   // Live dynamic countdown to October 10 at 00:00
   const countdown = useSeasonCountdown();
 
@@ -34,7 +37,9 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
         <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-8 border-b border-slate-800 text-xs font-mono">
           <div className="flex items-center gap-2 text-[#00C076]">
             <Terminal className="w-4 h-4" />
-            <span className="font-bold tracking-wider">BAMBOOZER QUANT TERMINAL // SEASON 04</span>
+            <span className="font-bold tracking-wider">
+              {isEn ? 'BAMBOOZER QUANT TERMINAL // SEASON 04' : 'BAMBOOZER QUANT TERMINAL // SEASON 04'}
+            </span>
             <span className="px-2 py-0.5 rounded bg-[#00C076]/20 text-[#00C076] font-bold text-[10px] animate-pulse">
               LIVE CHALLENGE
             </span>
@@ -42,10 +47,14 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
 
           <div className="flex items-center gap-4 text-slate-400">
             <span className="flex items-center gap-1">
-              <Activity className="w-3.5 h-3.5 text-emerald-400" /> 68 Thí sinh trực tuyến
+              <Activity className="w-3.5 h-3.5 text-emerald-400" />{' '}
+              {isEn ? '68 Traders Online' : '68 Thí sinh trực tuyến'}
             </span>
             <span className="hidden sm:inline text-slate-600">•</span>
-            <span className="hidden sm:inline text-slate-400">Mã giới thiệu chính thức: <code className="text-emerald-400 font-bold">ref=81</code></span>
+            <span className="hidden sm:inline text-slate-400">
+              {isEn ? 'Official Sponsor Code:' : 'Mã giới thiệu chính thức:'}{' '}
+              <code className="text-emerald-400 font-bold">ref=81</code>
+            </span>
           </div>
         </div>
 
@@ -54,7 +63,7 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-emerald-500/30 text-xs font-mono text-emerald-400">
               <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-              <span>GIẢI ĐẤU GIAO DỊCH ĐỊNH LƯỢNG 7 NGÀY CHÍNH THỨC</span>
+              <span>{isEn ? 'OFFICIAL 7-DAY QUANT TRADING TOURNAMENT' : 'GIẢI ĐẤU GIAO DỊCH ĐỊNH LƯỢNG 7 NGÀY CHÍNH THỨC'}</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
@@ -66,33 +75,41 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-              Tranh tài hiệu suất PnL & ROI đỉnh cao cùng hơn 50+ Quant Traders. Trải nghiệm hệ thống chấm điểm thời gian thực, kỷ luật quản trị rủi ro <strong className="text-white">Max Drawdown 10%</strong> và rinh thưởng <strong className="text-emerald-400">$1,140 USDT</strong>.
+              {isEn
+                ? 'Compete in high-stakes PnL & ROI rankings alongside 50+ quantitative traders. Enjoy real-time scoring, disciplined risk rules (Max Drawdown ≤ 10%), and a $1,140 USDT prize pool.'
+                : 'Tranh tài hiệu suất PnL & ROI đỉnh cao cùng hơn 50+ Quant Traders. Trải nghiệm hệ thống chấm điểm thời gian thực, kỷ luật quản trị rủi ro Max Drawdown 10% và rinh thưởng $1,140 USDT.'}
             </p>
 
             {/* Quick Metrics Bar */}
             <div className="grid grid-cols-3 gap-3 pt-2 max-w-lg">
               <div className="bg-[#0b101c] border border-slate-800 rounded-xl p-3">
-                <div className="text-[11px] text-slate-400 font-mono">TỔNG GIẢI THƯỞNG</div>
+                <div className="text-[11px] text-slate-400 font-mono">{t.totalPrizePool}</div>
                 <div className="text-xl sm:text-2xl font-mono font-extrabold text-[#00C076] mt-0.5">
                   ${CURRENT_SEASON.totalPrizeUsdt.toLocaleString()}
                 </div>
-                <div className="text-[10px] text-slate-500">Tiền mặt + Pro 1 Năm</div>
+                <div className="text-[10px] text-slate-500">
+                  {isEn ? 'Cash + 1-Yr Pro VIP' : 'Tiền mặt + Pro 1 Năm'}
+                </div>
               </div>
 
               <div className="bg-[#0b101c] border border-slate-800 rounded-xl p-3">
-                <div className="text-[11px] text-slate-400 font-mono">GIỚI HẠN DRAWDOWN</div>
+                <div className="text-[11px] text-slate-400 font-mono">{isEn ? 'MAX DRAWDOWN' : 'GIỚI HẠN DRAWDOWN'}</div>
                 <div className="text-xl sm:text-2xl font-mono font-extrabold text-amber-400 mt-0.5">
                   ≤ 10.0%
                 </div>
-                <div className="text-[10px] text-slate-500">Chống cháy tài khoản</div>
+                <div className="text-[10px] text-slate-500">
+                  {isEn ? 'Capital Protection' : 'Chống cháy tài khoản'}
+                </div>
               </div>
 
               <div className="bg-[#0b101c] border border-slate-800 rounded-xl p-3">
-                <div className="text-[11px] text-slate-400 font-mono">LỆ PHÍ THAM GIA</div>
+                <div className="text-[11px] text-slate-400 font-mono">{isEn ? 'ENTRY FEE' : 'LỆ PHÍ THAM GIA'}</div>
                 <div className="text-xl sm:text-2xl font-mono font-extrabold text-cyan-400 mt-0.5">
-                  MIỄN PHÍ
+                  {isEn ? 'FREE' : 'MIỄN PHÍ'}
                 </div>
-                <div className="text-[10px] text-slate-500">Nhập mã ref=81</div>
+                <div className="text-[10px] text-slate-500">
+                  {isEn ? 'Use code ref=81' : 'Nhập mã ref=81'}
+                </div>
               </div>
             </div>
 
@@ -106,7 +123,7 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
                 className="px-7 py-3.5 rounded-xl font-mono font-bold text-sm text-black bg-[#00C076] hover:bg-[#00d684] shadow-xl shadow-[#00C076]/25 transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2"
               >
                 <Trophy className="w-4 h-4" />
-                <span>THAM GIA GIẢI ĐẤU NGAY</span>
+                <span>{isEn ? 'REGISTER & JOIN SPRINT' : 'THAM GIA GIẢI ĐẤU NGAY'}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -114,15 +131,15 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
                 onClick={onViewLeaderboard}
                 className="px-6 py-3.5 rounded-xl font-mono font-semibold text-sm text-slate-200 hover:text-white bg-slate-900 border border-slate-700 hover:border-slate-500 transition-all cursor-pointer flex items-center justify-center gap-2"
               >
-                <span>XEM BẢNG XẾP HẠNG LIVE</span>
+                <span>{isEn ? 'VIEW LIVE LEADERBOARD' : 'XEM BẢNG XẾP HẠNG LIVE'}</span>
               </button>
 
               <button
                 onClick={() => trackAndOpenAffiliate('BloombergHero_DirectRef')}
                 className="px-4 py-3.5 rounded-xl text-xs font-mono text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                title="Mở link đăng ký chính thức với mã ref=81"
+                title="Register with ref=81"
               >
-                <span>Đăng ký qua ref=81</span>
+                <span>{isEn ? 'Sign up via ref=81' : 'Đăng ký qua ref=81'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -142,20 +159,26 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
               <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
                 <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
                   <Timer className="w-4 h-4 text-amber-400" />
-                  <span>{countdown.headerTitle}</span>
+                  <span>
+                    {isEn
+                      ? (countdown.isStarted && !countdown.isEnded ? t.countdownLiveTitle : t.countdownLaunchTitle)
+                      : countdown.headerTitle}
+                  </span>
                 </div>
                 <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/30">
-                  {countdown.badgeLabel}
+                  {isEn
+                    ? (countdown.isStarted && !countdown.isEnded ? t.countdownLiveBadge : t.countdownLaunchBadge)
+                    : countdown.badgeLabel}
                 </span>
               </div>
 
               {/* 4 Block Countdown */}
               <div className="grid grid-cols-4 gap-2 mb-4">
                 {[
-                  { label: 'NGÀY', val: countdown.days },
-                  { label: 'GIỜ', val: countdown.hours },
-                  { label: 'PHÚT', val: countdown.minutes },
-                  { label: 'GIÂY', val: countdown.seconds },
+                  { label: t.days, val: countdown.days },
+                  { label: t.hours, val: countdown.hours },
+                  { label: t.mins, val: countdown.minutes },
+                  { label: t.secs, val: countdown.seconds },
                 ].map((item, i) => (
                   <div key={i} className="bg-[#05080e] border border-slate-800/90 rounded-xl p-3 text-center">
                     <div className="text-2xl sm:text-3xl font-mono font-black text-white">
@@ -170,7 +193,7 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
               <div className="mb-4 px-3 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between text-xs font-mono">
                 <span className="text-slate-300 flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Khai mạc sự kiện:</span>
+                  <span>{isEn ? 'Tournament Launch:' : 'Khai mạc sự kiện:'}</span>
                 </span>
                 <span className="text-emerald-400 font-bold">10/10/2026 • 00:00:00</span>
               </div>
@@ -183,12 +206,12 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
                       <Trophy className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-amber-300">PHẦN THƯỞNG QUÁN QUÂN TOP 1</div>
-                      <div className="text-lg font-mono font-black text-white">$580 USDT TỔNG GIÁ TRỊ</div>
+                      <div className="text-xs font-bold text-amber-300">{t.top1RewardTitle}</div>
+                      <div className="text-lg font-mono font-black text-white">{t.top1RewardValue}</div>
                     </div>
                   </div>
                   <div className="text-right font-mono text-xs text-amber-400 font-bold">
-                    $100 Tiền Mặt + 1 Năm Pro
+                    {t.top1RewardBreakdown}
                   </div>
                 </div>
               </div>
@@ -196,7 +219,11 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
               {/* Security & Rule Badge */}
               <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-900/60 p-3 rounded-lg border border-slate-800">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Hệ thống minh bạch 100%, kiểm tra lệnh trực tiếp qua API đối tác không lưu ký.</span>
+                <span>
+                  {isEn
+                    ? '100% transparent system, real-time order auditing via non-custodial partner API.'
+                    : 'Hệ thống minh bạch 100%, kiểm tra lệnh trực tiếp qua API đối tác không lưu ký.'}
+                </span>
               </div>
             </div>
           </div>

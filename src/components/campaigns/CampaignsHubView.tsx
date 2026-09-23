@@ -22,7 +22,11 @@ import {
   ChevronRight,
   RotateCcw,
   Zap,
+  Link as LinkIcon,
+  Copy,
+  Check,
 } from 'lucide-react';
+import { getAbsoluteCampaignUrl } from '../../utils/urlRouter';
 
 interface CampaignsHubViewProps {
   onSelectSprintChallenge: () => void;
@@ -46,6 +50,14 @@ export const CampaignsHubView: React.FC<CampaignsHubViewProps> = ({
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilterType>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<SortOption>('DEFAULT');
+  const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
+
+  const handleCopyLink = (slug: string) => {
+    const url = getAbsoluteCampaignUrl(slug);
+    navigator.clipboard.writeText(url);
+    setCopiedSlug(slug);
+    setTimeout(() => setCopiedSlug(null), 2000);
+  };
 
   // Count calculations
   const counts = useMemo(() => {
@@ -548,6 +560,35 @@ export const CampaignsHubView: React.FC<CampaignsHubViewProps> = ({
                           </strong>
                         </span>
                       </div>
+                    </div>
+
+                    {/* Direct Canonical Route / URL Badge */}
+                    <div className="flex items-center justify-between text-[11px] font-mono px-3 py-2 rounded-xl bg-[#05080e] border border-slate-800/90 text-slate-400 mb-5">
+                      <div className="flex items-center gap-1.5 truncate">
+                        <LinkIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span className="text-slate-500">Đường dẫn:</span>
+                        <code className="text-emerald-400 font-bold truncate">/campaign/{camp.slug}</code>
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopyLink(camp.slug);
+                        }}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[10px] font-mono cursor-pointer transition-colors shrink-0 ml-2"
+                        title="Sao chép đường dẫn chia sẻ"
+                      >
+                        {copiedSlug === camp.slug ? (
+                          <>
+                            <Check className="w-3 h-3 text-emerald-400" />
+                            <span className="text-emerald-400 font-bold">Đã chép</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3 h-3" />
+                            <span>Sao chép</span>
+                          </>
+                        )}
+                      </button>
                     </div>
                   </div>
 

@@ -25,12 +25,13 @@ import { Sparkles, Coins, Check, Gift, Mail, X, Flame } from 'lucide-react';
 import { useLanguage } from './i18n';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { parseCurrentRoute, navigateToRoute, AppView } from './utils/urlRouter';
 
 export const BAMBOOZER_REGISTER_URL = 'https://www.bamboozer.com/register?ref=81';
 
 export default function App() {
   const { t } = useLanguage();
-  const [currentView, setCurrentView] = useState<'landing' | 'campaigns' | 'sprint_challenge'>('landing');
+  const [currentView, setCurrentView] = useState<AppView>(() => parseCurrentRoute().view);
   const [userCredits, setUserCredits] = useState<number>(100);
   const [quickGuideModuleId, setQuickGuideModuleId] = useState<string | null>(null);
   const [isReferralOpen, setIsReferralOpen] = useState<boolean>(false);
@@ -40,12 +41,44 @@ export default function App() {
   const [isCampaignModalOpen, setIsCampaignModalOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Automatically trigger campaign popup when visitor enters the page
+  // Central Router Navigator: updates React state and pushes canonical browser URL
+  const navigate = (view: AppView, slug?: string) => {
+    navigateToRoute(view, slug);
+    setCurrentView(view);
+  };
+
+  // Sync route on popstate (browser back/forward) and hashchange
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsCampaignModalOpen(true);
-    }, 600);
-    return () => clearTimeout(timer);
+    const handlePopState = () => {
+      const route = parseCurrentRoute();
+      setCurrentView(route.view);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handlePopState);
+
+    // Initial check
+    const initialRoute = parseCurrentRoute();
+    if (initialRoute.view !== currentView) {
+      setCurrentView(initialRoute.view);
+    }
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handlePopState);
+    };
+  }, []);
+
+  // Automatically trigger campaign popup when visitor enters landing page
+  useEffect(() => {
+    // Only auto-open modal if user landed on home page, not deep-linked campaign directly
+    const route = parseCurrentRoute();
+    if (route.view === 'landing') {
+      const timer = setTimeout(() => {
+        setIsCampaignModalOpen(true);
+      }, 600);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const triggerToast = (msg: string) => {
@@ -77,10 +110,10 @@ export default function App() {
     return (
       <div className="min-h-screen bg-[#080c14] text-slate-100">
         <CampaignsHubView
-          onSelectSprintChallenge={() => setCurrentView('sprint_challenge')}
+          onSelectSprintChallenge={() => navigate('sprint_challenge', 'bamboozer-7day-sprint')}
           onOpenRegisterModal={handleOpenRegister}
           onOpenActiveEventPopup={() => setIsCampaignModalOpen(true)}
-          onBackToLanding={() => setCurrentView('landing')}
+          onBackToLanding={() => navigate('landing')}
         />
         <Analytics />
         <SpeedInsights />
@@ -93,9 +126,9 @@ export default function App() {
     return (
       <div className="min-h-screen bg-[#080c14] text-slate-100">
         <SprintChallengeView
-          onBackToHub={() => setCurrentView('campaigns')}
+          onBackToHub={() => navigate('campaigns')}
           onOpenRegister={handleOpenRegister}
-          onBackToLanding={() => setCurrentView('landing')}
+          onBackToLanding={() => navigate('landing')}
         />
         <Analytics />
         <SpeedInsights />
@@ -128,7 +161,7 @@ export default function App() {
                 <span>CHIẾN DỊCH HOT:</span>
               </span>
               <span className="text-slate-200 truncate">
-                Giải đấu Trading Sprint Mùa 04 ($1,140 USDT) đang diễn ra! Mã bảo trợ <strong className="text-emerald-400 font-mono">ref=81</strong>
+                Giải đấu Trading Sprint Mùa 04 ($1,140 USDT) khởi tranh 10/10 lúc 00:00! Mã bảo trợ <strong className="text-emerald-400 font-mono">ref=81</strong>
               </span>
               <button
                 onClick={() => setIsCampaignModalOpen(true)}
@@ -155,8 +188,8 @@ export default function App() {
           onOpenReferral={() => setIsReferralOpen(true)}
           onOpenVideoDemo={() => setIsVideoDemoOpen(true)}
           onOpenContact={() => setIsContactOpen(true)}
-          onOpenCampaigns={() => setCurrentView('campaigns')}
-          onOpenSprintChallenge={() => setCurrentView('sprint_challenge')}
+          onOpenCampaigns={() => navigate('campaigns')}
+          onOpenSprintChallenge={() => navigate('sprint_challenge', 'bamboozer-7day-sprint')}
           onOpenCampaignModal={() => setIsCampaignModalOpen(true)}
           userCredits={userCredits}
         />
@@ -282,12 +315,12 @@ export default function App() {
         onClose={() => setIsCampaignModalOpen(false)}
         onViewChallenge={() => {
           setIsCampaignModalOpen(false);
-          setCurrentView('sprint_challenge');
+          navigate('sprint_challenge', 'bamboozer-7day-sprint');
         }}
         onOpenRegister={handleOpenRegister}
         onViewAllCampaigns={() => {
           setIsCampaignModalOpen(false);
-          setCurrentView('campaigns');
+          navigate('campaigns');
         }}
       />
       <Analytics />

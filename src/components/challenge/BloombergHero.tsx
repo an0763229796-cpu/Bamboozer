@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import confetti from 'canvas-confetti';
 import { Trophy, Timer, ArrowRight, ShieldCheck, Flame, ExternalLink, Activity, Sparkles, Terminal } from 'lucide-react';
 import { trackAndOpenAffiliate } from '../../services/telemetryDb';
 import { CURRENT_SEASON } from '../../data/mockData';
+import { useSeasonCountdown } from '../../utils/seasonCountdown';
 
 interface BloombergHeroProps {
   onJoinClick: () => void;
@@ -10,26 +11,8 @@ interface BloombergHeroProps {
 }
 
 export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onViewLeaderboard }) => {
-  // Countdown to season end
-  const [timeLeft, setTimeLeft] = useState({
-    days: 4,
-    hours: 18,
-    minutes: 42,
-    seconds: 15,
-  });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
-        if (prev.minutes > 0) return { ...prev, minutes: 59, seconds: 59 };
-        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
-        return prev;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  // Live dynamic countdown to October 10 at 00:00
+  const countdown = useSeasonCountdown();
 
   const triggerConfetti = () => {
     confetti({
@@ -159,20 +142,20 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
               <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
                 <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
                   <Timer className="w-4 h-4 text-amber-400" />
-                  <span>THỜI GIAN CÒN LẠI CỦA MÙA 04</span>
+                  <span>{countdown.headerTitle}</span>
                 </div>
-                <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">
-                  COUNTDOWN
+                <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/30">
+                  {countdown.badgeLabel}
                 </span>
               </div>
 
               {/* 4 Block Countdown */}
-              <div className="grid grid-cols-4 gap-2 mb-6">
+              <div className="grid grid-cols-4 gap-2 mb-4">
                 {[
-                  { label: 'NGÀY', val: timeLeft.days },
-                  { label: 'GIỜ', val: timeLeft.hours },
-                  { label: 'PHÚT', val: timeLeft.minutes },
-                  { label: 'GIÂY', val: timeLeft.seconds },
+                  { label: 'NGÀY', val: countdown.days },
+                  { label: 'GIỜ', val: countdown.hours },
+                  { label: 'PHÚT', val: countdown.minutes },
+                  { label: 'GIÂY', val: countdown.seconds },
                 ].map((item, i) => (
                   <div key={i} className="bg-[#05080e] border border-slate-800/90 rounded-xl p-3 text-center">
                     <div className="text-2xl sm:text-3xl font-mono font-black text-white">
@@ -181,6 +164,15 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
                     <div className="text-[10px] font-mono text-slate-500 mt-1 font-semibold">{item.label}</div>
                   </div>
                 ))}
+              </div>
+
+              {/* Event Start Date Highlight Notice */}
+              <div className="mb-4 px-3 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between text-xs font-mono">
+                <span className="text-slate-300 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Khai mạc sự kiện:</span>
+                </span>
+                <span className="text-emerald-400 font-bold">10/10/2026 • 00:00:00</span>
               </div>
 
               {/* Top 1 Champion Prize Card */}

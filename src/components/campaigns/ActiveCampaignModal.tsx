@@ -13,10 +13,14 @@ import {
   TrendingUp,
   Award,
   Medal,
-  ShieldCheck
+  ShieldCheck,
+  Link as LinkIcon,
+  Copy,
+  Check
 } from 'lucide-react';
 import { BAMBOOZER_REGISTER_URL } from '../../App';
 import { CURRENT_SEASON } from '../../data/mockData';
+import { getAbsoluteCampaignUrl } from '../../utils/urlRouter';
 
 interface ActiveCampaignModalProps {
   isOpen: boolean;
@@ -33,6 +37,14 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
   onOpenRegister,
   onViewAllCampaigns,
 }) => {
+  const [copiedUrl, setCopiedUrl] = React.useState(false);
+
+  const handleCopyUrl = () => {
+    const url = getAbsoluteCampaignUrl('bamboozer-7day-sprint');
+    navigator.clipboard.writeText(url);
+    setCopiedUrl(true);
+    setTimeout(() => setCopiedUrl(false), 2000);
+  };
   // Handle ESC key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -89,11 +101,11 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
         <div className="flex flex-wrap items-center gap-2 mb-3.5 pr-8">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase tracking-wide">
             <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400 animate-pulse" />
-            <span>CHIẾN DỊCH HOT ĐANG DIỄN RA</span>
+            <span>KHỞI TRANH NGÀY 10/10 • 00:00 (MÙA 04)</span>
           </span>
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>MÙA 04 LIVE</span>
+            <span>10/10 → 17/10/2026</span>
           </span>
         </div>
 
@@ -108,7 +120,7 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
           </span>
         </h2>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
-          Giải đấu giao dịch định lượng &amp; scalping tự động 7 ngày trên Bamboozer. Minh bạch kết quả qua luồng WebSocket real-time với tổng giải thưởng <strong className="text-emerald-400 font-bold">$1,140 USDT</strong> và bản quyền Pro VIP.
+          Giải đấu giao dịch định lượng &amp; scalping tự động 7 ngày chính thức khai mạc vào <strong className="text-emerald-400 font-bold">00:00 ngày 10/10/2026</strong>. Minh bạch kết quả qua luồng WebSocket real-time với tổng giải thưởng <strong className="text-emerald-400 font-bold">$1,140 USDT</strong> và bản quyền Pro VIP.
         </p>
 
         {/* Quick Highlights Grid */}
@@ -196,6 +208,22 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
             <span>Tự động cập nhật bảng xếp hạng</span>
           </div>
+        </div>
+
+        {/* Direct Campaign URL Route Display & Copy */}
+        <div className="flex items-center justify-between text-xs font-mono px-3.5 py-2 rounded-xl bg-[#060a12] border border-slate-800 text-slate-400 mb-5">
+          <div className="flex items-center gap-2 truncate">
+            <LinkIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+            <span className="text-slate-500">Đường dẫn:</span>
+            <code className="text-emerald-400 font-bold">/campaign/bamboozer-7day-sprint</code>
+          </div>
+          <button
+            onClick={handleCopyUrl}
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold cursor-pointer transition-all shrink-0 ml-2"
+          >
+            {copiedUrl ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+            <span>{copiedUrl ? 'Đã sao chép link!' : 'Sao chép link'}</span>
+          </button>
         </div>
 
         {/* Action Buttons Row */}

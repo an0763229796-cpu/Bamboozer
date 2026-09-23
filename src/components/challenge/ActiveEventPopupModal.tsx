@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Trophy,
   Flame,
@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { CURRENT_SEASON } from '../../data/mockData';
 import { trackAndOpenAffiliate } from '../../services/telemetryDb';
+import { useSeasonCountdown } from '../../utils/seasonCountdown';
 
 interface ActiveEventPopupModalProps {
   isOpen: boolean;
@@ -29,26 +30,7 @@ export const ActiveEventPopupModal: React.FC<ActiveEventPopupModalProps> = ({
   onOpenRegisterModal,
 }) => {
   const [dontShowAgain, setDontShowAgain] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({
-    days: 4,
-    hours: 18,
-    minutes: 42,
-    seconds: 35,
-  });
-
-  // Live countdown timer
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
-        if (prev.minutes > 0) return { ...prev, minutes: 59, seconds: 59 };
-        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
-        return prev;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  const countdown = useSeasonCountdown();
 
   if (!isOpen) return null;
 
@@ -133,36 +115,36 @@ export const ActiveEventPopupModal: React.FC<ActiveEventPopupModalProps> = ({
             <div className="flex items-center justify-between mb-3 text-[11px] text-slate-400">
               <span className="flex items-center gap-1.5 font-bold text-cyan-400">
                 <Clock className="w-3.5 h-3.5" />
-                THỜI GIAN CÒN LẠI CỦA MÙA GIẢI
+                {!countdown.isStarted ? 'ĐẾM NGƯỢC KHỞI TRANH (10/10 00:00)' : 'THỜI GIAN CÒN LẠI CỦA MÙA GIẢI'}
               </span>
-              <span>20/09 → 27/09/2026</span>
+              <span className="text-emerald-400 font-bold">10/10 → 17/10/2026</span>
             </div>
 
             <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
               <div className="bg-[#0c121e] border border-slate-800/80 rounded-xl py-2.5 px-1">
                 <div className="text-2xl sm:text-3xl font-black text-emerald-400 font-mono">
-                  {String(timeLeft.days).padStart(2, '0')}
+                  {String(countdown.days).padStart(2, '0')}
                 </div>
                 <div className="text-[10px] text-slate-400 mt-0.5">NGÀY</div>
               </div>
 
               <div className="bg-[#0c121e] border border-slate-800/80 rounded-xl py-2.5 px-1">
                 <div className="text-2xl sm:text-3xl font-black text-white font-mono">
-                  {String(timeLeft.hours).padStart(2, '0')}
+                  {String(countdown.hours).padStart(2, '0')}
                 </div>
                 <div className="text-[10px] text-slate-400 mt-0.5">GIỜ</div>
               </div>
 
               <div className="bg-[#0c121e] border border-slate-800/80 rounded-xl py-2.5 px-1">
                 <div className="text-2xl sm:text-3xl font-black text-white font-mono">
-                  {String(timeLeft.minutes).padStart(2, '0')}
+                  {String(countdown.minutes).padStart(2, '0')}
                 </div>
                 <div className="text-[10px] text-slate-400 mt-0.5">PHÚT</div>
               </div>
 
               <div className="bg-[#0c121e] border border-slate-800/80 rounded-xl py-2.5 px-1">
                 <div className="text-2xl sm:text-3xl font-black text-cyan-400 font-mono">
-                  {String(timeLeft.seconds).padStart(2, '0')}
+                  {String(countdown.seconds).padStart(2, '0')}
                 </div>
                 <div className="text-[10px] text-slate-400 mt-0.5">GIÂY</div>
               </div>

@@ -84,7 +84,7 @@ export const AdminDashboard: React.FC = () => {
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Admin &amp; Arbitrage Panel</h1>
             <p className="text-xs text-slate-400 font-mono mt-0.5">
-              Bamboozer Season 04 • Giám sát 68 Thí sinh • Ngưỡng Max Drawdown: {maxDrawdownLimit}%
+              Bamboozer Season 01 • Giám sát 68 Thí sinh • Ngưỡng Max Drawdown: {maxDrawdownLimit}%
             </p>
           </div>
 
@@ -100,12 +100,12 @@ export const AdminDashboard: React.FC = () => {
             <button
               onClick={() => {
                 exportTelemetryAsCsv();
-                notify('Đã xuất toàn bộ log Telemetry đối tác ref=81.');
+                notify('Đã xuất toàn bộ log Telemetry chuyển đổi.');
               }}
               className="px-4 py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-xs font-mono text-emerald-300 border border-emerald-500/40 flex items-center gap-2 cursor-pointer transition-colors"
             >
               <Download className="w-4 h-4" />
-              <span>Xuất Telemetry (ref=81)</span>
+              <span>Xuất Telemetry (CSV)</span>
             </button>
           </div>
         </div>
@@ -200,7 +200,7 @@ export const AdminDashboard: React.FC = () => {
                     >
                       {t.maxDrawdown.toFixed(1)}%
                     </td>
-                    <td className="py-3 px-3 text-cyan-400 font-semibold">{t.kolRef || 'ref=81'}</td>
+                    <td className="py-3 px-3 text-cyan-400 font-semibold">{t.kolRef ? 'Đã liên kết' : 'Mặc định'}</td>
                     <td className="py-3 px-3">
                       {t.status === 'Disqualified' ? (
                         <span className="px-2 py-0.5 rounded text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/40">

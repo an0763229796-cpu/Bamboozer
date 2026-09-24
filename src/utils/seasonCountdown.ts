@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
 /**
- * Bamboozer Season 04 Event Timeline:
+ * Bamboozer Season 01 Event Timeline:
  * - Start: October 10, 2026 at 00:00:00 (GMT+7 / Indochina Time)
- * - Duration: 7 days
- * - End: October 17, 2026 at 23:59:59 (GMT+7)
+ * - Duration: 14 days
+ * - End: October 24, 2026 at 23:59:59 (GMT+7)
  */
 export const EVENT_START_ISO = '2026-10-10T00:00:00+07:00';
-export const EVENT_END_ISO = '2026-10-17T23:59:59+07:00';
+export const EVENT_END_ISO = '2026-10-24T23:59:59+07:00';
 
 export const EVENT_START_DATE = new Date(EVENT_START_ISO);
 export const EVENT_END_DATE = new Date(EVENT_END_ISO);
@@ -40,15 +40,15 @@ export function calculateSeasonCountdown(): SeasonCountdownData {
 
   if (!isStarted) {
     targetMs = startMs;
-    headerTitle = 'ĐẾM NGƯỢC KHỞI TRANH MÙA 04 (10/10 00:00)';
+    headerTitle = 'ĐẾM NGƯỢC KHỞI TRANH MÙA 01 (10/10 00:00)';
     badgeLabel = 'KHỞI TRANH 10/10';
   } else if (!isEnded) {
     targetMs = endMs;
-    headerTitle = 'THỜI GIAN CÒN LẠI CỦA MÙA 04';
+    headerTitle = 'THỜI GIAN CÒN LẠI CỦA MÙA 01 (14 NGÀY)';
     badgeLabel = 'COUNTDOWN LIVE';
   } else {
     targetMs = now;
-    headerTitle = 'MÙA 04 ĐÃ KẾT THÚC';
+    headerTitle = 'MÙA 01 ĐÃ KẾT THÚC';
     badgeLabel = 'ĐÃ KẾT THÚC';
   }
 

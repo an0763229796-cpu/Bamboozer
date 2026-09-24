@@ -80,7 +80,7 @@ export const SprintChallengeView: React.FC<SprintChallengeViewProps> = ({
       {/* Institutional 24H Metrics Terminal */}
       <InstitutionalTerminal />
 
-      {/* Prize Pool Breakdown ($1,140 USDT) */}
+      {/* Prize Pool Breakdown ($700 + Pro VIP) */}
       <PrizePoolSection onJoinClick={onOpenRegister} />
 
       {/* Live TanStack Leaderboard Section */}

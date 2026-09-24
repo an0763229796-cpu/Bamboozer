@@ -38,7 +38,7 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
           <div className="flex items-center gap-2 text-[#00C076]">
             <Terminal className="w-4 h-4" />
             <span className="font-bold tracking-wider">
-              {isEn ? 'BAMBOOZER QUANT TERMINAL // SEASON 04' : 'BAMBOOZER QUANT TERMINAL // SEASON 04'}
+              {isEn ? 'BAMBOOZER QUANT TERMINAL // SEASON 01' : 'BAMBOOZER QUANT TERMINAL // SEASON 01'}
             </span>
             <span className="px-2 py-0.5 rounded bg-[#00C076]/20 text-[#00C076] font-bold text-[10px] animate-pulse">
               LIVE CHALLENGE
@@ -52,8 +52,8 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
             </span>
             <span className="hidden sm:inline text-slate-600">•</span>
             <span className="hidden sm:inline text-slate-400">
-              {isEn ? 'Official Sponsor Code:' : 'Mã giới thiệu chính thức:'}{' '}
-              <code className="text-emerald-400 font-bold">ref=81</code>
+              {isEn ? 'Tournament:' : 'Mùa giải chính thức:'}{' '}
+              <span className="text-emerald-400 font-bold font-mono">Season 01</span>
             </span>
           </div>
         </div>
@@ -63,21 +63,20 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-emerald-500/30 text-xs font-mono text-emerald-400">
               <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-              <span>{isEn ? 'OFFICIAL 7-DAY QUANT TRADING TOURNAMENT' : 'GIẢI ĐẤU GIAO DỊCH ĐỊNH LƯỢNG 7 NGÀY CHÍNH THỨC'}</span>
+              <span>{isEn ? 'INDICATOR & STRATEGY 14-DAY TRADING COMPETITION' : 'CUỘC THI GIAO DỊCH 14 NGÀY • INDICATOR & STRATEGY'}</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
-              Bamboozer 7-Day{' '}
+              Bamboozer 14-Day{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C076] via-teal-300 to-cyan-400">
-                Trading Sprint
-              </span>{' '}
-              Challenge
+                Trading Challenge
+              </span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
               {isEn
-                ? 'Compete in high-stakes PnL & ROI rankings alongside 50+ quantitative traders. Enjoy real-time scoring, disciplined risk rules (Max Drawdown ≤ 10%), and a $1,140 USDT prize pool.'
-                : 'Tranh tài hiệu suất PnL & ROI đỉnh cao cùng hơn 50+ Quant Traders. Trải nghiệm hệ thống chấm điểm thời gian thực, kỷ luật quản trị rủi ro Max Drawdown 10% và rinh thưởng $1,140 USDT.'}
+                ? 'A 14-day live trading competition for traders applying custom or built-in Indicators and Strategies to Live Trading. Winners are evaluated on Net Profit combined with strict Risk Management discipline.'
+                : 'Tổ chức cuộc thi giao dịch trong 14 ngày dành cho Trader. Người tham gia tự xây dựng hoặc sử dụng Indicator, Strategy và áp dụng vào Live Trading. Người chiến thắng được đánh giá dựa trên lợi nhuận ròng kết hợp với mức độ tuân thủ quy định quản lý rủi ro.'}
             </p>
 
             {/* Quick Metrics Bar */}
@@ -85,10 +84,10 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
               <div className="bg-[#0b101c] border border-slate-800 rounded-xl p-3">
                 <div className="text-[11px] text-slate-400 font-mono">{t.totalPrizePool}</div>
                 <div className="text-xl sm:text-2xl font-mono font-extrabold text-[#00C076] mt-0.5">
-                  ${CURRENT_SEASON.totalPrizeUsdt.toLocaleString()}
+                  $700
                 </div>
                 <div className="text-[10px] text-slate-500">
-                  {isEn ? 'Cash + 1-Yr Pro VIP' : 'Tiền mặt + Pro 1 Năm'}
+                  {isEn ? 'Cash + Pro VIP' : 'Tiền mặt + Gói Pro'}
                 </div>
               </div>
 
@@ -108,7 +107,7 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
                   {isEn ? 'FREE' : 'MIỄN PHÍ'}
                 </div>
                 <div className="text-[10px] text-slate-500">
-                  {isEn ? 'Use code ref=81' : 'Nhập mã ref=81'}
+                  {isEn ? '100% Free Entry' : 'Miễn phí tham gia'}
                 </div>
               </div>
             </div>
@@ -137,9 +136,9 @@ export const BloombergHero: React.FC<BloombergHeroProps> = ({ onJoinClick, onVie
               <button
                 onClick={() => trackAndOpenAffiliate('BloombergHero_DirectRef')}
                 className="px-4 py-3.5 rounded-xl text-xs font-mono text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                title="Register with ref=81"
+                title="Mở sàn liên kết"
               >
-                <span>{isEn ? 'Sign up via ref=81' : 'Đăng ký qua ref=81'}</span>
+                <span>{isEn ? 'Open Exchange' : 'Mở sàn liên kết'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </button>
             </div>

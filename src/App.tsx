@@ -160,7 +160,7 @@ export default function App() {
                 <span>CHIẾN DỊCH HOT:</span>
               </span>
               <span className="text-slate-200 truncate">
-                Giải đấu Trading Sprint Mùa 04 ($1,140 USDT) khởi tranh 10/10 lúc 00:00! Mã bảo trợ <strong className="text-emerald-400 font-mono">ref=81</strong>
+                Bamboozer 14-Day Trading Challenge Mùa 01 ($700 + Pro) khởi tranh 10/10 lúc 00:00! Đăng ký tham gia hoàn toàn 0đ.
               </span>
               <button
                 onClick={() => setIsCampaignModalOpen(true)}

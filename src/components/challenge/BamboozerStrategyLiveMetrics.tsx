@@ -254,7 +254,7 @@ export const BamboozerStrategyLiveMetrics: React.FC<StrategyLiveMetricsProps> = 
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              Mùa 04 Live (Mẫu)
+              Mùa 01 Live (Mẫu)
             </button>
             <button
               onClick={() => setDataMode('clean')}
@@ -486,7 +486,7 @@ export const BamboozerStrategyLiveMetrics: React.FC<StrategyLiveMetricsProps> = 
           <div>
             <div className="flex items-center justify-between mb-4 text-xs font-mono">
               <span className="font-bold text-white">LỊCH LỢI NHUẬN THEO NGÀY (PROFIT CALENDAR)</span>
-              <span className="text-slate-400">Tháng 10/2026 • 7-Day Sprint Season 04</span>
+              <span className="text-slate-400">Tháng 10/2026 • 14-Day Challenge Season 01</span>
             </div>
 
             {dataMode === 'clean' ? (

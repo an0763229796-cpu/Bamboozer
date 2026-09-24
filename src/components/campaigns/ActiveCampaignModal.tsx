@@ -101,11 +101,11 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
         <div className="flex flex-wrap items-center gap-2 mb-3.5 pr-8">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase tracking-wide">
             <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400 animate-pulse" />
-            <span>KHỞI TRANH NGÀY 10/10 • 00:00 (MÙA 04)</span>
+            <span>KHỞI TRANH NGÀY 10/10 • 00:00 (MÙA 01)</span>
           </span>
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>10/10 → 17/10/2026</span>
+            <span>10/10 → 24/10/2026</span>
           </span>
         </div>
 
@@ -114,21 +114,21 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
           id="campaign-modal-title"
           className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-white leading-snug mb-2"
         >
-          Bamboozer 7-Day Trading Sprint{' '}
+          Bamboozer 14-Day Trading Challenge{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-            Season 04
+            Season 01
           </span>
         </h2>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
-          Giải đấu giao dịch định lượng &amp; scalping tự động 7 ngày chính thức khai mạc vào <strong className="text-emerald-400 font-bold">00:00 ngày 10/10/2026</strong>. Minh bạch kết quả qua luồng WebSocket real-time với tổng giải thưởng <strong className="text-emerald-400 font-bold">$1,140 USDT</strong> và bản quyền Pro VIP.
+          Cuộc thi giao dịch trong 14 ngày dành cho Trader tự áp dụng <strong className="text-white">Indicator, Strategy</strong> vào Live Trading từ <strong className="text-emerald-400 font-bold">10/10 đến 24/10/2026</strong>. Đánh giá dựa trên lợi nhuận ròng kết hợp quản lý rủi ro với tổng giải thưởng <strong className="text-emerald-400 font-bold">$700 Tiền Mặt + Gói Pro VIP</strong>.
         </p>
 
         {/* Quick Highlights Grid */}
         <div className="grid grid-cols-3 gap-2.5 sm:gap-3.5 mb-5 font-mono">
           <div className="bg-[#0c1626]/90 border border-emerald-500/30 rounded-2xl p-3 text-center sm:text-left">
             <div className="text-[10px] sm:text-xs text-slate-400 uppercase font-sans">TỔNG GIẢI THƯỞNG</div>
-            <div className="text-lg sm:text-2xl font-black text-emerald-400 mt-0.5">$1,140</div>
-            <div className="text-[10px] text-slate-400 hidden sm:block font-sans">USDT &amp; Cấp Vốn Pro</div>
+            <div className="text-lg sm:text-2xl font-black text-emerald-400 mt-0.5">$700</div>
+            <div className="text-[10px] text-slate-400 hidden sm:block font-sans">Tiền Mặt + Pro VIP</div>
           </div>
           <div className="bg-[#0c1626]/90 border border-slate-800 rounded-2xl p-3 text-center sm:text-left">
             <div className="text-[10px] sm:text-xs text-slate-400 uppercase font-sans">THÍ SINH THAM GIA</div>
@@ -136,9 +136,9 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
             <div className="text-[10px] text-slate-400 hidden sm:block font-sans">Trader đang thi đấu</div>
           </div>
           <div className="bg-[#0c1626]/90 border border-amber-500/30 rounded-2xl p-3 text-center sm:text-left">
-            <div className="text-[10px] sm:text-xs text-slate-400 uppercase font-sans">MÃ BẢO TRỢ</div>
-            <div className="text-lg sm:text-2xl font-black text-amber-400 mt-0.5">ref=81</div>
-            <div className="text-[10px] text-slate-400 hidden sm:block font-sans">Miễn phí 100% tham dự</div>
+            <div className="text-[10px] sm:text-xs text-slate-400 uppercase font-sans">LỆ PHÍ THAM GIA</div>
+            <div className="text-lg sm:text-2xl font-black text-amber-400 mt-0.5">MIỄN PHÍ</div>
+            <div className="text-[10px] text-slate-400 hidden sm:block font-sans">100% Quyền lợi bảo trợ</div>
           </div>
         </div>
 
@@ -147,45 +147,45 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
           <div className="text-xs font-bold text-slate-300 flex items-center justify-between mb-2.5">
             <span className="flex items-center gap-1.5">
               <Trophy className="w-3.5 h-3.5 text-amber-400" />
-              <span>CƠ CẤU GIẢI THƯỞNG HẤP DẪN</span>
+              <span>CƠ CẤU GIẢI THƯỞNG 14-DAY CHALLENGE</span>
             </span>
-            <span className="text-[10px] text-emerald-400 font-mono">Trao thưởng sau 7 ngày</span>
+            <span className="text-[10px] text-emerald-400 font-mono">Trao thưởng sau 14 ngày</span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
             <div className="bg-[#0d1726] border border-amber-500/30 rounded-xl p-2.5">
               <div className="flex items-center gap-1 text-amber-400 font-bold text-[11px]">
                 <Trophy className="w-3.5 h-3.5 fill-amber-400" />
-                <span>Quán Quân</span>
+                <span>Giải Nhất</span>
               </div>
-              <div className="text-sm font-black text-white mt-1">$100 Cash</div>
-              <div className="text-[10px] text-emerald-400">+ 1 Năm Pro VIP ($480)</div>
+              <div className="text-sm font-black text-white mt-1">$300 Cash</div>
+              <div className="text-[10px] text-emerald-400">+ 3 Tháng Pro VIP</div>
             </div>
 
             <div className="bg-[#0d1726] border border-slate-700 rounded-xl p-2.5">
               <div className="flex items-center gap-1 text-slate-300 font-bold text-[11px]">
                 <Medal className="w-3.5 h-3.5 fill-slate-300" />
-                <span>Á Quân</span>
+                <span>Giải Nhì</span>
               </div>
-              <div className="text-sm font-black text-white mt-1">$50 Cash</div>
-              <div className="text-[10px] text-emerald-400">+ 6 Tháng Pro ($240)</div>
+              <div className="text-sm font-black text-white mt-1">$200 Cash</div>
+              <div className="text-[10px] text-emerald-400">+ 1 Tháng Pro VIP</div>
             </div>
 
             <div className="bg-[#0d1726] border border-amber-700/50 rounded-xl p-2.5">
               <div className="flex items-center gap-1 text-amber-600 font-bold text-[11px]">
                 <Award className="w-3.5 h-3.5 fill-amber-600" />
-                <span>Quý Quân</span>
+                <span>Giải Ba</span>
               </div>
-              <div className="text-sm font-black text-white mt-1">$30 Cash</div>
-              <div className="text-[10px] text-emerald-400">+ 3 Tháng Pro ($105)</div>
+              <div className="text-sm font-black text-white mt-1">$100 Cash</div>
+              <div className="text-[10px] text-emerald-400">+ 1 Tháng Pro VIP</div>
             </div>
 
             <div className="bg-[#0d1726] border border-cyan-500/30 rounded-xl p-2.5">
               <div className="flex items-center gap-1 text-cyan-400 font-bold text-[11px]">
                 <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Risk Master</span>
+                <span>Risk Award</span>
               </div>
-              <div className="text-sm font-black text-white mt-1">$30 Cash</div>
-              <div className="text-[10px] text-cyan-300">Max DD &lt; 10% ($105)</div>
+              <div className="text-sm font-black text-white mt-1">$100 Cash</div>
+              <div className="text-[10px] text-cyan-300">+ 1 Tháng Pro VIP</div>
             </div>
           </div>
         </div>
@@ -236,7 +236,7 @@ export const ActiveCampaignModal: React.FC<ActiveCampaignModalProps> = ({
             }}
             className="flex-1 py-3 px-5 rounded-2xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 hover:from-emerald-300 hover:to-cyan-200 transition-all shadow-lg shadow-emerald-500/25 active:scale-95 cursor-pointer flex items-center justify-center gap-2 text-sm"
           >
-            <span>Đăng Ký Tham Gia Ngay (Mã ref=81)</span>
+            <span>Đăng Ký Tham Gia Ngay (0đ)</span>
             <ArrowRight className="w-4 h-4" />
           </button>
 

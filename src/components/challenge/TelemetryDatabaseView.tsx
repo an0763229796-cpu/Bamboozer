@@ -59,7 +59,7 @@ export const TelemetryDatabaseView: React.FC = () => {
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Affiliate &amp; Click Telemetry</h1>
             <p className="text-xs text-slate-400 font-mono mt-0.5">
-              Lưu trữ sự kiện tự động theo dõi chuyển đổi mã giới thiệu chính thức: <code className="text-emerald-400 font-bold">ref=81</code>
+              Lưu trữ sự kiện tự động theo dõi lưu lượng và chuyển đổi chiến dịch trực tuyến.
             </p>
           </div>
 

@@ -85,7 +85,7 @@ export function navigateToRoute(view: AppView, slug?: string): string {
 
   if (view === 'sprint_challenge') {
     targetUrl = CANONICAL_ROUTES.sprintChallenge;
-    pageTitle = 'Bamboozer 7-Day Trading Sprint Challenge - Season 04 ($1,140 USDT)';
+    pageTitle = 'Bamboozer 14-Day Trading Challenge - Season 01 ($700 + Pro)';
   } else if (view === 'campaigns') {
     targetUrl = slug ? CANONICAL_ROUTES.campaignBySlug(slug) : CANONICAL_ROUTES.campaigns;
     pageTitle = 'Bamboozer Campaigns & Trading Leagues Hub';

@@ -37,9 +37,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems: { label: string; view: AppView; icon: any; badge?: string }[] = [
     { label: 'Tất Cả Chiến Dịch', view: 'campaigns_hub', icon: Layers, badge: 'MỚI' },
-    { label: '7-Day Sprint Mùa 04', view: 'sprint_challenge', icon: Trophy, badge: 'HOT' },
+    { label: '14-Day Challenge Mùa 01', view: 'sprint_challenge', icon: Trophy, badge: 'HOT' },
     { label: 'Góc Trader Của Tôi', view: 'trader_dashboard', icon: User },
-    { label: 'Telemetry (ref=81)', view: 'telemetry_view', icon: Activity },
+    { label: 'Telemetry Real-time', view: 'telemetry_view', icon: Activity },
   ];
 
   return (
@@ -122,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="px-4 py-2 rounded-xl text-xs font-bold text-black bg-[#00C076] hover:bg-[#00d684] shadow-md shadow-[#00C076]/20 transition-all cursor-pointer flex items-center gap-1.5"
           >
             <Trophy className="w-3.5 h-3.5" />
-            <span>GHI DANH $1,140</span>
+            <span>GHI DANH $700 + PRO</span>
           </button>
         </div>
 
@@ -183,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
             className="w-full mt-2 py-3 rounded-xl font-bold text-center text-black bg-[#00C076] cursor-pointer"
           >
-            GHI DANH TRANH GIẢI $1,140
+            GHI DANH TRANH GIẢI $700 + PRO
           </button>
         </div>
       )}

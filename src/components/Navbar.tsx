@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               id="btn-nav-campaigns"
               onClick={onOpenCampaignModal || onOpenCampaigns}
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-400/50 transition-all cursor-pointer whitespace-nowrap shrink-0 group"
-              title="Khám phá Chiến Dịch & Giải Đấu Sprint Challenge $1,140"
+              title="Khám phá Chiến Dịch & Giải Đấu 14-Day Challenge $700 + Pro"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -99,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
               <span>Chiến Dịch</span>
               <span className="bg-emerald-400/20 text-emerald-300 text-[10px] px-1 py-0.2 rounded font-mono font-bold border border-emerald-400/30 group-hover:bg-emerald-400/30">
-                $1,140
+                $700+
               </span>
             </button>
 
@@ -109,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 id="btn-nav-leaderboard"
                 onClick={onOpenSprintChallenge}
                 className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 hover:border-cyan-400/50 transition-all cursor-pointer whitespace-nowrap shrink-0"
-                title="Bảng xếp hạng thời gian thực Mùa 04"
+                title="Bảng xếp hạng thời gian thực Mùa 01"
               >
                 <Trophy className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span>Bảng Xếp Hạng</span>
@@ -220,10 +220,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div>
                 <div className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span>CHIẾN DỊCH HOT: MÙA 04</span>
+                  <span>CHIẾN DỊCH HOT: MÙA 01</span>
                 </div>
                 <div className="text-xs font-semibold text-white mt-0.5">
-                  7-Day Sprint Challenge ($1,140 USDT)
+                  14-Day Trading Challenge ($700 + Pro)
                 </div>
               </div>
               <button
@@ -264,7 +264,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25 transition-all cursor-pointer whitespace-nowrap"
                 >
                   <Trophy className="w-4 h-4 text-amber-400" />
-                  <span>Bảng Xếp Hạng Mùa 04 (Real-time Live)</span>
+                  <span>Bảng Xếp Hạng Mùa 01 (Real-time Live)</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                 </button>
               )}
@@ -278,7 +278,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition-all cursor-pointer whitespace-nowrap"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span>Tổng Hợp Các Chiến Dịch ($1,140)</span>
+                  <span>Tổng Hợp Các Chiến Dịch ($700 + Pro)</span>
                 </button>
               )}
 

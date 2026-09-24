@@ -196,7 +196,7 @@ export const CampaignsHubView: React.FC<CampaignsHubViewProps> = ({
 
                 <div className="bg-[#05080e]/90 border border-slate-800 rounded-xl p-3 sm:p-3.5">
                   <div className="text-slate-400 text-[10px] sm:text-[11px]">{t.sponsorRef}</div>
-                  <div className="text-lg sm:text-2xl font-bold text-amber-400 mt-0.5">ref=81</div>
+                  <div className="text-lg sm:text-2xl font-bold text-amber-400 mt-0.5">MIỄN PHÍ</div>
                   <div className="text-[10px] text-slate-500">{t.sponsorRefSub}</div>
                 </div>
               </div>
@@ -477,7 +477,7 @@ export const CampaignsHubView: React.FC<CampaignsHubViewProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredCampaigns.map((camp) => {
               const isFeatured = camp.featured;
-              const isSprintS4 = camp.id === 'campaign-sprint-s4';
+              const isSprintS4 = camp.id === 'campaign-sprint-s1' || camp.id === 'campaign-sprint-s4';
               const isActive = camp.status === 'ACTIVE';
               const isUpcoming = camp.status === 'UPCOMING';
               const isCompleted = camp.status === 'COMPLETED';
@@ -572,10 +572,9 @@ export const CampaignsHubView: React.FC<CampaignsHubViewProps> = ({
                           {camp.startDate} → {camp.endDate}
                         </span>
                         <span>
-                          {isEn ? 'Sponsor code:' : 'Mã ref bảo trợ:'}{' '}
-                          <strong className="text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
-                            {camp.affiliateRef}
-                          </strong>
+                          <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                            {isEn ? 'Official Verified' : 'Bảo trợ chính thức'}
+                          </span>
                         </span>
                       </div>
                     </div>
@@ -619,7 +618,7 @@ export const CampaignsHubView: React.FC<CampaignsHubViewProps> = ({
                           className="w-full py-3 rounded-xl font-mono font-bold text-xs text-black bg-[#00C076] hover:bg-[#00d684] transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-[#00C076]/25"
                         >
                           <Trophy className="w-4 h-4" />
-                          <span>{isEn ? 'ENTER SPRINT S04' : 'VÀO SPRINT MÙA 04'}</span>
+                          <span>{isEn ? 'ENTER SPRINT S01' : 'VÀO BẢNG ĐẤU MÙA 01'}</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </button>
 

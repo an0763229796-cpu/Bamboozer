@@ -116,7 +116,7 @@ export const RunningPriceTicker: React.FC = () => {
         <div className="hidden lg:flex items-center gap-2 text-xs font-mono text-slate-400 shrink-0 pl-4 ml-4 border-l border-slate-800 z-10 bg-[#05080e]">
           <span className="text-slate-500">PRIZE POOL:</span>
           <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/25">
-            $1,140 USDT
+            $700 + PRO VIP
           </span>
         </div>
       </div>

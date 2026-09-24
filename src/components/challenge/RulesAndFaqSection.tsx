@@ -15,16 +15,16 @@ export const RulesAndFaqSection: React.FC = () => {
       a: 'Hệ thống tự động phát hiện sụt giảm vốn tức thời so với đỉnh vốn cao nhất (High Water Mark). Nếu Max Drawdown > 10.0%, tài khoản sẽ chuyển sang trạng thái "Disqualified" và không được xét giải thưởng cuối kỳ.',
     },
     {
-      q: 'Giải thưởng $1,140 USDT sẽ được trao như thế nào?',
-      a: 'Tiền mặt ($100 cho Top 1, $50 cho Top 2, $30 cho Top 3, $30 cho Risk Award) sẽ được chuyển trực tiếp vào ví USDT mạng TRC20/BEP20 của thí sinh trong vòng 48h sau khi công bố kết quả. Gói Bamboozer Pro VIP sẽ được kích hoạt trực tiếp theo UID.',
+      q: 'Cơ cấu giải thưởng $700 Tiền Mặt + Gói Pro VIP sẽ được trao như thế nào?',
+      a: 'Tiền mặt ($300 cho Giải Nhất, $200 cho Giải Nhì, $100 cho Giải Ba, $100 cho Risk Management Award) sẽ được chuyển trực tiếp vào ví USDT của thí sinh trong vòng 48h sau khi công bố kết quả. Gói tài khoản Bamboozer Pro VIP (3 tháng cho Giải Nhất, 1 tháng cho Giải Nhì, Ba và Risk Award) sẽ được kích hoạt trực tiếp theo UID.',
     },
     {
       q: 'Tôi có cần nạp tiền vào Bamboozer không?',
       a: 'Không. Bamboozer là nền tảng phân tích và quản lý chiến lược phi lưu ký (non-custodial). Tiền và lệnh nằm trực tiếp trên tài khoản sàn của bạn thông qua API chỉ có quyền Trade (tuyệt đối KHÔNG cấp quyền Rút tiền).',
     },
     {
-      q: 'Mã giới thiệu ref=81 có bắt buộc không?',
-      a: 'Có. Mã ref=81 là định danh liên kết chiến dịch độc quyền để kích hoạt quyền tham gia Mùa 04 miễn phí và nhận gói quà tặng $100 Credits phân tích AI.',
+      q: 'Lệ phí tham gia giải đấu là bao nhiêu?',
+      a: 'Hoàn toàn 0đ. Bạn được cấp quyền tham gia Mùa 01 miễn phí 100% và nhận gói quà tặng $100 Credits phân tích chiến lược AI từ Bamboozer.',
     },
   ];
 

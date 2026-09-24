@@ -10,8 +10,8 @@ export const HowToParticipateSection: React.FC<HowToParticipateSectionProps> = (
   const steps = [
     {
       num: '01',
-      title: 'Đăng Ký Tài Khoản Bamboozer',
-      desc: 'Tạo tài khoản giao dịch chính thức thông qua liên kết đối tác bảo trợ với mã ref=81.',
+      title: 'Đăng Ký Tài Khoản Giao Dịch',
+      desc: 'Tạo tài khoản giao dịch chính thức qua cổng đối tác bảo trợ độc quyền.',
       icon: UserPlus,
     },
     {
@@ -22,20 +22,20 @@ export const HowToParticipateSection: React.FC<HowToParticipateSectionProps> = (
     },
     {
       num: '03',
-      title: 'Xác Nhận Tham Gia Mùa 04',
+      title: 'Xác Nhận Tham Gia Mùa 01',
       desc: 'Điền form ghi danh để hệ thống khởi tạo UID và kết nối đường truyền telemetry chấm điểm tự động.',
       icon: ShieldCheck,
     },
     {
       num: '04',
-      title: 'Giao Dịch Trong 7 Ngày',
+      title: 'Giao Dịch Trong 14 Ngày',
       desc: 'Thực hiện tối thiểu 10 lệnh trên các cặp giao dịch hợp lệ: BTC, ETH, SOL, BNB, XRP.',
       icon: LineChart,
     },
     {
       num: '05',
       title: 'Kiểm Soát Drawdown & Nhận Thưởng',
-      desc: 'Duy trì Max Drawdown ≤ 10%. Top ROI và Risk Master sẽ được giải ngân tiền mặt tức thì.',
+      desc: 'Duy trì Max Drawdown ≤ 10%. Top ROI và Risk Management Award sẽ được giải ngân tiền mặt tức thì.',
       icon: Trophy,
     },
   ];
@@ -48,7 +48,7 @@ export const HowToParticipateSection: React.FC<HowToParticipateSectionProps> = (
             5 Bước Tham Gia Cuộc Thi
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-2">
-            Quy trình minh bạch, không lưu ký tài sản và đối soát tự động qua mã giới thiệu <span className="text-emerald-400 font-mono font-bold">ref=81</span>.
+            Quy trình minh bạch, không lưu ký tài sản và đối soát tự động qua hệ thống chuẩn hóa.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export const HowToParticipateSection: React.FC<HowToParticipateSectionProps> = (
             onClick={() => trackAndOpenAffiliate('HowToParticipate_RefButton')}
             className="w-full sm:w-auto px-6 py-3.5 rounded-xl font-mono text-sm text-slate-300 hover:text-white bg-slate-900 border border-slate-700 hover:border-slate-500 transition-all cursor-pointer text-center"
           >
-            Mở Link Trực Tiếp ref=81
+            Mở Sàn Giao Dịch Trực Tiếp
           </button>
         </div>
       </div>

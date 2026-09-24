@@ -14,7 +14,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onJoinClick })
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono mb-4">
           <Trophy className="w-4 h-4" />
-          <span>ĐĂNG KÝ MIỄN PHÍ • GIẢI THƯỞNG $1,140 USDT</span>
+          <span>ĐĂNG KÝ MIỄN PHÍ • GIẢI THƯỞNG $700 + PRO VIP</span>
         </div>
 
         <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-5 leading-tight">
@@ -22,7 +22,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onJoinClick })
         </h2>
 
         <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
-          Gia nhập hơn 50+ Quant Traders hàng đầu khu vực, rèn giũa kỷ luật kiểm soát Drawdown 10% và ghi danh trên Bảng vàng vinh danh Bamboozer.
+          Gia nhập cuộc thi 14 ngày, áp dụng Indicator &amp; Strategy của bạn vào Live Trading và rinh về phần thưởng $700 tiền mặt cùng gói bản quyền Pro VIP.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -30,7 +30,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onJoinClick })
             onClick={onJoinClick}
             className="w-full sm:w-auto px-8 py-4 rounded-xl font-mono font-bold text-sm text-black bg-[#00C076] hover:bg-[#00d684] shadow-2xl shadow-[#00C076]/30 transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2"
           >
-            <span>GIA NHẬP SPRINT MÙA 04 NGAY</span>
+            <span>GIA NHẬP 14-DAY CHALLENGE NGAY</span>
             <ArrowRight className="w-4 h-4" />
           </button>
 
@@ -38,7 +38,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onJoinClick })
             onClick={() => trackAndOpenAffiliate('FinalCta_DirectAffiliate')}
             className="w-full sm:w-auto px-6 py-4 rounded-xl font-mono text-sm text-slate-300 hover:text-white bg-slate-900 border border-slate-700 hover:border-slate-500 transition-all cursor-pointer flex items-center justify-center gap-2"
           >
-            <span>Tạo tài khoản ref=81</span>
+            <span>Tạo tài khoản giao dịch</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </button>
         </div>

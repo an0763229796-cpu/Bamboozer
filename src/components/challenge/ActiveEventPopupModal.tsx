@@ -99,14 +99,14 @@ export const ActiveEventPopupModal: React.FC<ActiveEventPopupModalProps> = ({
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-xs text-emerald-400 mb-2.5">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>GIẢI ĐẤU TIÊU ĐIỂM: MÙA 04 (SEASON 04)</span>
+              <span>GIẢI ĐẤU TIÊU ĐIỂM: MÙA 01 (SEASON 01)</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">
-              Bamboozer 7-Day Trading Sprint Challenge
+              Bamboozer 14-Day Trading Challenge
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 mt-1.5 font-sans leading-relaxed">
-              Giải đấu định lượng cao điểm 7 ngày kiểm tra kỷ luật quản trị vốn và khả năng sinh lời. Cạnh tranh cùng 68+ traders toàn cầu với tổng quỹ thưởng <strong className="text-[#00C076] font-mono font-bold">$1,140 USDT</strong>.
+              Cuộc thi giao dịch trong 14 ngày dành cho Trader tự xây dựng hoặc áp dụng Indicator, Strategy vào Live Trading. Cạnh tranh cùng 68+ traders toàn cầu với tổng quỹ thưởng <strong className="text-[#00C076] font-mono font-bold">$700 Tiền Mặt + Pro VIP</strong>.
             </p>
           </div>
 
@@ -117,7 +117,7 @@ export const ActiveEventPopupModal: React.FC<ActiveEventPopupModalProps> = ({
                 <Clock className="w-3.5 h-3.5" />
                 {!countdown.isStarted ? 'ĐẾM NGƯỢC KHỞI TRANH (10/10 00:00)' : 'THỜI GIAN CÒN LẠI CỦA MÙA GIẢI'}
               </span>
-              <span className="text-emerald-400 font-bold">10/10 → 17/10/2026</span>
+              <span className="text-emerald-400 font-bold">10/10 → 24/10/2026</span>
             </div>
 
             <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
@@ -155,8 +155,8 @@ export const ActiveEventPopupModal: React.FC<ActiveEventPopupModalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
             <div className="bg-[#0c121e] border border-slate-800/90 rounded-xl p-3">
               <div className="text-slate-400 text-[10px]">TỔNG GIẢI THƯỞNG</div>
-              <div className="text-lg font-bold text-[#00C076] mt-0.5">$1,140 USDT</div>
-              <div className="text-[10px] text-slate-500">Tiền mặt + Gói Pro VIP</div>
+              <div className="text-lg font-bold text-[#00C076] mt-0.5">$700 TIỀN MẶT</div>
+              <div className="text-[10px] text-slate-500">+ Bản Quyền Pro VIP</div>
             </div>
 
             <div className="bg-[#0c121e] border border-slate-800/90 rounded-xl p-3">
@@ -171,32 +171,32 @@ export const ActiveEventPopupModal: React.FC<ActiveEventPopupModalProps> = ({
             <div className="bg-[#0c121e] border border-slate-800/90 rounded-xl p-3">
               <div className="text-slate-400 text-[10px]">ĐIỀU KIỆN THI ĐẤU</div>
               <div className="text-lg font-bold text-amber-400 mt-0.5">Max DD &le; 10%</div>
-              <div className="text-[10px] text-slate-500">Miễn phí qua ref=81</div>
+              <div className="text-[10px] text-slate-500">Miễn phí 100% tham gia</div>
             </div>
           </div>
 
           {/* Prize breakdown quick list */}
           <div className="bg-[#0c121e]/60 border border-slate-800/70 rounded-xl p-3.5 space-y-2 text-xs">
             <div className="text-[11px] font-bold text-slate-400 flex items-center justify-between">
-              <span>CƠ CẤU GIẢI THƯỞNG HÀNG ĐẦU</span>
-              <span className="text-emerald-400">Trả lời kết quả 27/09</span>
+              <span>CƠ CẤU GIẢI THƯỞNG 14-DAY CHALLENGE</span>
+              <span className="text-emerald-400">Khởi tranh 10/10/2026</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
               <div className="bg-[#070b14] p-2 rounded-lg border border-slate-800 text-center">
                 <div className="text-amber-400 font-bold">🥇 Quán Quân</div>
-                <div className="text-white font-bold">$580 Giá Trị</div>
+                <div className="text-white font-bold">$300 + 3th Pro</div>
               </div>
               <div className="bg-[#070b14] p-2 rounded-lg border border-slate-800 text-center">
                 <div className="text-slate-300 font-bold">🥈 Á Quân</div>
-                <div className="text-white font-bold">$290 Giá Trị</div>
+                <div className="text-white font-bold">$200 + 1th Pro</div>
               </div>
               <div className="bg-[#070b14] p-2 rounded-lg border border-slate-800 text-center">
                 <div className="text-amber-600 font-bold">🥉 Quý Quân</div>
-                <div className="text-white font-bold">$135 Giá Trị</div>
+                <div className="text-white font-bold">$100 + 1th Pro</div>
               </div>
               <div className="bg-[#070b14] p-2 rounded-lg border border-slate-800 text-center">
                 <div className="text-emerald-400 font-bold">🛡️ Risk Award</div>
-                <div className="text-white font-bold">$135 Giá Trị</div>
+                <div className="text-white font-bold">$100 + 1th Pro</div>
               </div>
             </div>
           </div>

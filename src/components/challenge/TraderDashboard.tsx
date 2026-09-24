@@ -111,7 +111,7 @@ export const TraderDashboard: React.FC = () => {
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-mono mt-1">
-                Chiến dịch: Bamboozer 7-Day Trading Sprint • Mã đối tác: <strong className="text-emerald-400">ref=81</strong>
+                Chiến dịch: Bamboozer 14-Day Trading Challenge Mùa 01 • Trạng thái: <strong className="text-emerald-400">Hợp lệ (Active)</strong>
               </p>
             </div>
           </div>
